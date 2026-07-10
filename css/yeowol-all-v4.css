@@ -1,0 +1,4867 @@
+
+/* ════════════════════════════════════════════════════════════════
+   여울 농장 (Yeowol Farm) 포트폴리오 — 전체 CSS
+   ════════════════════════════════════════════════════════════════
+
+   ★ 이 파일은 어떻게 구성되어 있나요?
+   1. 폰트 불러오기
+   2. 전체 초기화 (브라우저 기본 스타일 제거)
+   3. 공용 부품 (어디서나 쓰는 버튼, 태그, 애니메이션 등)
+   4. NAV (상단 고정 메뉴바)
+   5. 히어로 (첫 화면)
+   6. About (소개)
+   7. 작물 소개 (부사네/와히 카드)
+   8. 모달 (부사네 케이스 스터디)
+   9. 모달 (와히 케이스 스터디)
+   10. 수확물 (실무 작업)
+   11. 농장 소식 (인스타)
+   12. Contact (연락처)
+   13. Footer
+   14. 반응형 (모바일/태블릿 화면 크기 대응)
+
+   ★ 색상 규칙
+   이 파일은 색상 변수를 사용하지 않습니다.
+   모든 색상은 사용하는 자리에 직접 HEX코드로 적고,
+   바로 위 또는 옆에 "이 색이 무슨 색인지" 한글 주석을 달아둡니다.
+   예: background: #8acc7d; /* 부사네 메인 그린 */
+
+   /* ★ 클래스 이름 규칙 
+    부사네에서만 쓰는 클래스는 앞에 busane 를 붙입니다.
+    와히에서만 쓰는 클래스는 앞에 wahi 를 붙입니다.  같이 쓰는 공용 클래스는 접두어 없이 의미가 드러나는
+     이름을 그대로 씁니다. section-title, button-primary
+   - 한 글자짜리 줄임말(nm, who, ico 같은 것)은 전부 풀어서 씁니다.
+   ════════════════════════════════════════════════════════════════ */
+
+
+/* ────────────────────────────────────────────────────────────────
+   1. 폰트 불러오기
+   ──────────────────────────────────────────────────────────────── */
+
+/* colors_and_type.css 안에 Pretendard, RomanticGumi, GoyangDeokyang 한글 폰트가 들어있습니다 */
+@import url('colors_and_type.css');
+
+/* 구글 폰트 - 영문 폰트들 */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500&family=Urbanist:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap');
+
+/* 고양덕양체 - 손글씨 느낌 한글 폰트 (직접 폰트 파일을 가져와서 등록) */
+@font-face {
+  font-family: 'GoyangDeokyang';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GoyangDeogyang.woff') format('woff');
+  font-weight: normal;
+  font-display: swap;
+
+}
+  /* 온글잎 박다현 체 */
+  @font-face {
+    font-family: 'OngleipParkDahyeon';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2411-3@1.0/Ownglyph_ParkDaHyun.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
+
+/* 낭만있구미 */
+@font-face {
+    font-family: 'RomanticGumi';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2410-1@1.0/GumiRomanceTTF.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
+
+/* 수트체 */
+@font-face {
+    font-family: 'Suit';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Thin.woff2') format('woff2');
+    font-weight: 100;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Suit';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-ExtraLight.woff2') format('woff2');
+    font-weight: 200;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Suit';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Suit';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Suit';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Suit';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Suit';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Suit';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Suit';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Heavy.woff2') format('woff2');
+    font-weight: 900;
+    font-display: swap;
+}
+
+/* 티머니 둥근바람 */
+@font-face {
+    font-family: 'TMoneyDungunbaram';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindRegular.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'TMoneyDungunbaram';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-display: swap;
+}
+
+
+/* ────────────────────────────────────────────────────────────────
+   2. 전체 초기화
+   브라우저마다 기본으로 깔려있는 스타일(여백, 밑줄 등)을 깔끔하게 지웁니다
+   ──────────────────────────────────────────────────────────────── */
+
+   /* 마우스 설정하기 */
+/* 전체 요소를 선택하여 강제로 커서 고정 */
+* {
+  cursor: url('./img/Artboard\ 3.png') 10 10, auto !important;
+}
+
+
+   * {
+  box-sizing: border-box;
+  /* 박스 크기 계산 방식을 통일 (padding이 width에 포함되도록) */
+}
+
+html {
+  scroll-behavior: smooth;
+  /* 메뉴 클릭 시 스크롤이 부드럽게 이동 */
+}
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body {
+  margin: 0;
+  background: #F7F3EC;
+  /* 밝은 베이지 — 농장 전체 기본 배경색 */
+  color: #2C2416;
+  /* 진한 흙색 — 농장 전체 기본 글자색 */
+  font-family: 'Pretendard', system-ui, sans-serif;
+  /* 기본 UI 폰트 */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  /* 가로 스크롤 생기는 것 방지 */
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  /* 링크 색을 부모 글자색 그대로 따라가게 함 (기본 파란색 제거) */
+  text-decoration: none;
+  /* 링크 밑줄 제거 */
+}
+
+section {
+  position: relative;
+}
+
+/* 텍스트를 마우스로 드래그해서 선택했을 때 배경색 */
+::selection {
+  background: #A9B583;
+  /* 연한 이끼색 */
+  color: #2C2416;
+  /* 진한 흙색 */
+}
+
+
+/* ────────────────────────────────────────────────────────────────
+   종이 질감 효과 (.grain)
+   class="grain" 을 넣으면 그 위에 미세한 종이 노이즈 텍스처가 깔립니다
+   ──────────────────────────────────────────────────────────────── */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* 클릭이 이 효과를 통과해서 아래 요소에 전달되도록 */
+  opacity: .5;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+
+/* ────────────────────────────────────────────────────────────────
+   3. 레이아웃 기본 틀
+   ──────────────────────────────────────────────────────────────── */
+
+/* 콘텐츠 가운데 정렬 + 최대 너비 제한 (일반 섹션용) */
+.content-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* 콘텐츠 가운데 정렬 + 최대 너비 제한 (조금 더 넓은 섹션용 - 브라우저 목업 등) */
+.content-wrap-wide {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* 섹션 위아래 여백 (일반 섹션에 사용) */
+.section-padding {
+  padding: 120px 0;
+  position: relative;
+}
+
+/* 화면 끝까지 색이 꽉 차는 섹션 (배경색이 브라우저 끝까지 이어지는 곳) */
+.section-fullbleed {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 모달(팝업) 안에서 쓰는 섹션 좌우 여백 */
+.modal-section-padding {
+  padding: 120px 40px;
+}
+
+
+/* ────────────────────────────────────────────────────────────────
+   4. 공용 부품들
+   여러 섹션에서 반복해서 쓰이는 작은 컴포넌트 모음
+   ──────────────────────────────────────────────────────────────── */
+
+/* [플레이스홀더 메모] 아직 실제 콘텐츠가 안 채워진 자리에 표시하는 점선 박스 */
+.placeholder-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #5C6B3A;
+  /* 이끼색 글자 */
+  background: rgba(92, 107, 58, .1);
+  /* 이끼색 10% 투명 배경 */
+  border: 1px dashed #A9B583;
+  /* 연한 이끼색 점선 테두리 */
+  border-radius: 6px;
+  padding: 7px 13px;
+}
+
+.placeholder-note::before {
+  content: "✎";
+  /* 연필 아이콘 */
+  font-size: 12px;
+}
+
+/* 어두운 배경 위에 올라가는 플레이스홀더 메모 (색 반전) */
+.placeholder-note.on-dark-bg {
+  color: #cdd6a8;
+  background: rgba(255, 255, 255, .08);
+  border-color: rgba(205, 214, 168, .4);
+}
+
+/* [섹션 라벨] "About the Farmer", "Crops · 작물 소개" 처럼 섹션 맨 위에 작게 나오는 영문 라벨 */
+.section-label {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: .4em;
+  /* 글자 사이를 넓게 벌려서 라벨 느낌 강조 */
+  text-transform: uppercase;
+  color: #5C6B3A;
+  /* 이끼색 */
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 30px;
+}
+
+/* 섹션 라벨 좌우에 붙는 짧은 가로선 */
+.section-label-line {
+  width: 30px;
+  height: 1px;
+  background: currentColor;
+  /* 부모 글자색을 그대로 선 색으로 사용 */
+  opacity: .6;
+}
+
+/* 어두운 배경 위에 올라가는 섹션 라벨 (밝은 색으로 반전) */
+.section-label.on-dark-bg {
+  color: #6d6e71;
+
+}
+
+/* [섹션 제목] "농장에서 자란 농작물들" 처럼 각 섹션의 큰 제목 글씨 */
+.section-title {
+  font-family: 'GoyangDeokyang', sans-serif;
+  font-weight: 400;
+  font-size: clamp(20px, 4vw, 40px);
+  /* 화면 크기에 따라 30~50px 사이로 자동 조절 */
+  color: #2C2416;
+  /* 진한 흙색 */
+  margin: 18px 0 0;
+  letter-spacing: -.01em;
+  line-height: 1.25;
+}
+
+/* [섹션 설명문] 섹션 제목 아래 붙는 한 줄 설명 캡션 */
+.section-caption {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: #8A7B62;
+  /* 흐린 흙색 */
+  margin: 12px 0 0;
+  max-width: 60ch;
+  /* 글자 60개 폭까지만 늘어나도록 제한 (너무 길어지지 않게) */
+  line-height: 1.85;
+}
+
+/* [둥근 태그 - 채워진 버전] "Branding", "UX/UI" 같은 스킬 태그 */
+.tag-filled {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #fff;
+  background: #5C6B3A;
+  /* 이끼색 배경 */
+  padding: 9px 18px;
+  border-radius: 99px;
+  /* 숫자를 크게 줘서 완전한 둥근 캡슐 모양 */
+  display: inline-block;
+}
+
+/* [둥근 태그 - 테두리만 버전] "카페", "베이커리" 같은 카테고리 태그 */
+.tag-outline {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: .02em;
+  padding: 7px 16px;
+  border-radius: 99px;
+  border: 1.5px solid currentColor;
+  /* 글자색과 같은 색의 테두리 */
+  display: inline-block;
+}
+
+/* 테두리 태그에 마우스 올렸을 때 */
+.tag-outline:hover {
+  background-color: #8acc7d;
+  /* 부사네 메인 그린 */
+  color: #fff;
+}
+
+/* 테두리 태그에 마우스 올렸을 때 */
+.tag-outline wahi-pain-point-tage:hover {
+  background-color: #3B2314;
+  /* 부사네 메인 그린 */
+  color: #fff;
+}
+
+/* [기본 버튼] 초록색 배경의 메인 버튼 (예: "이메일 보내기") */
+.button-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #fff;
+  background: #5C6B3A;
+  /* 이끼색 */
+  padding: 14px 28px;
+  border-radius: 99px;
+  cursor: pointer;
+  border: none;
+  transition: transform .25s cubic-bezier(0.22, 0.61, 0.36, 1), background .25s, box-shadow .25s;
+  box-shadow: 0 8px 18px -8px rgba(92, 107, 58, .6);
+  /* 이끼색 그림자 */
+}
+
+.button-primary:hover {
+  transform: translateY(-3px);
+  /* 위로 살짝 떠오르는 효과 */
+  background: #2C2416;
+  /* 진한 흙색 */
+  box-shadow: 0 14px 24px -10px rgba(44, 36, 22, .5);
+}
+
+/* 버튼 안의 화살표(→) 글자에만 영문 폰트 적용 */
+.button-arrow {
+  font-family: 'Urbanist', sans-serif;
+}
+
+/* [테두리 버튼 - 농장 공용] "← 농장으로 돌아가기" 같은 곳에 쓰는 투명 버튼 */
+.button-outline-farm {
+  background: transparent;
+  color: #2C2416;
+  /* 진한 흙색 */
+  border: 1.5px solid #D4C4A8;
+  /* 모래색 테두리 */
+  box-shadow: none;
+  transition: transform .25s cubic-bezier(0.22, 0.61, 0.36, 1), background .25s, box-shadow .25s, border-color .25s;
+}
+
+.button-outline-farm:hover {
+  background: #2C2416;
+  /* 진한 흙색 */
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 14px 24px -10px rgba(44, 36, 22, .5);
+}
+
+/* [등장 애니메이션] 스크롤하면서 화면에 보이면 아래에서 위로 스윽 나타나는 효과
+   사용법: class="rise" 를 기본으로 넣고, JS가 화면에 보이는 순간 "in" 클래스를 추가해줍니다 */
+.rise {
+  opacity: 0;
+  transform: translateY(26px);
+  /* 아래로 26px 내려간 상태로 시작 (안 보이는 상태) */
+  transition: opacity .9s cubic-bezier(0.22, 0.61, 0.36, 1), transform .9s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.rise.in {
+  opacity: 1;
+  transform: none;
+  /* 원래 위치로 돌아오면서 나타남 */
+}
+
+/* 여러 요소가 동시에 나타나지 않고 순서대로 나타나도록 딜레이를 주는 클래스들 */
+.rise.delay-1 {
+  transition-delay: .1s;
+}
+
+.rise.delay-2 {
+  transition-delay: .2s;
+}
+
+.rise.delay-3 {
+  transition-delay: .3s;
+}
+
+.rise.delay-4 {
+  transition-delay: .4s;
+}
+
+.rise.delay-5 {
+  transition-delay: .5s;
+}
+
+.rise.delay-6 {
+  transition-delay: .6s;
+}
+
+.rise.delay-7 {
+  transition-delay: .7s;
+}
+
+
+
+/* 사용자가 "애니메이션 줄이기" 설정을 켜놨다면 애니메이션 없이 바로 보여줌 (접근성) */
+@media (prefers-reduced-motion: reduce) {
+  .rise {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* [움직임 키프레임] 여러 곳에서 재사용하는 애니메이션 동작 정의 */
+
+/* 위아래로 둥둥 떠다니는 움직임 (씨앗, 화살표 등에 사용) */
+@keyframes float-up-down {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* 좌우로 살짝 흔들리는 움직임 */
+@keyframes sway-left-right {
+
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+/* 연기가 위로 피어오르는 움직임 (와히 로고에 사용) */
+@keyframes steam-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(4px) scaleX(1);
+  }
+
+  40% {
+    opacity: .7;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-14px) scaleX(1.3);
+  }
+}
+
+/* [버튼 묶음 가로배치] 버튼 여러 개를 가운데 정렬로 나란히 배치하는 래퍼 */
+.button-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* [하단 네비게이션 줄] 모달 안 "다음 작물로" / "돌아가기" 버튼이 있는 줄 */
+.busane-modal-bottom-nav-row {
+  margin: 40px 0 0;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* [하단 네비게이션 줄] 모달 안 "다음 작물로" / "돌아가기" 버튼이 있는 줄 */
+.wahi-modal-bottom-nav-row {
+  margin: 40px 0 0;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* [모달 내부 이동 버튼] "다음 작물: 와히 →" 같은 글자만 있는 버튼 */
+.modal-nav-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: inherit;
+  opacity: .85;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: opacity .3s;
+  padding: 0;
+}
+
+.modal-nav-button:hover {
+  opacity: .5;
+}
+/* ════════════════════════════════════════════════════════════════
+   5. NAV — 상단 고정 메뉴바
+   화면을 스크롤해도 항상 맨 위에 떠 있는 메뉴바입니다.
+   왼쪽: 로고(여울 농장 이미지) / 오른쪽: About, 작물, 수확물, 소식, Contact 메뉴
+   ════════════════════════════════════════════════════════════════ */
+
+.nav-bar {
+  position: fixed;
+  /* 스크롤해도 화면에 고정 */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 80;
+  /* 다른 요소보다 항상 위에 보이도록 */
+  padding: 20px 0;
+  transition: background .4s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow .4s, padding .4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* 스크롤을 50px 이상 내리면 JS가 이 클래스를 추가해서 배경이 생기게 함 */
+.nav-bar.scrolled {
+  background: rgba(247, 243, 236, .92);
+  /* 밝은 베이지 92% 불투명 */
+  backdrop-filter: blur(10px);
+  /* 뒤가 살짝 블러처리 됨 (유리느낌) */
+  padding: 5px 0;
+  /* 스크롤하면 메뉴바가 살짝 더 얇아짐 */
+  box-shadow: 0 1px 0 #E0D6C4;
+  /* 라인색 아래쪽 경계선 */
+}
+
+/* NAV 내부 콘텐츠 — 로고와 메뉴를 가로로 배치 */
+.nav-bar-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+}
+
+/* 왼쪽 로고 영역 (이미지 + 텍스트를 묶는 링크) */
+.nav-logo-link {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+/* NAV 왼쪽에 들어가는 "여울 농장" 이미지 로고 */
+.nav-logo-image {
+  width: 70px;
+}
+
+/* (참고) 예전에 텍스트로 로고를 썼을 때 쓰던 스타일 — 이미지로 교체했지만 혹시 다시 텍스트로 쓸 경우를 위해 남겨둠 */
+.nav-logo-text-fallback b {
+  font-family: 'RomanticGumi', 'GoyangDeokyang', sans-serif;
+  font-size: 18px;
+  color: #2C2416;
+  line-height: 1;
+}
+
+/* NAV 로고 아이콘 컨테이너 — 원본 SVG와 동일하게 26×26px 고정 */
+.nav-logo-flower-icon {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  flex: none;
+  margin-bottom: 10px;
+}
+
+/* 5단계 이미지를 같은 자리에 겹쳐놓고 기본은 전부 숨김 */
+.nav-flower-stage {
+  position: absolute;
+  inset: 0;
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  opacity: 0;
+  transform-origin: 13px 24px;
+  transform: scale(0.8) translateY(2px);
+  transition: opacity 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* JS가 .show 클래스를 붙인 단계만 보임 */
+.nav-flower-stage.show {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* 오른쪽 메뉴 목록 (About / 작물 / 수확물 / 소식 / Contact) */
+.nav-menu-list {
+  margin: 0 0 0 auto;
+  /* margin-left:auto 로 메뉴를 오른쪽 끝으로 밀어줌 */
+  padding: 0;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-menu-list a {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 14.5px;
+  color: #4A3F2D;
+  /* 중간 흙색 */
+  position: relative;
+  transition: color .3s;
+}
+
+/* 메뉴 글자 밑에 깔리는 밑줄 — 기본적으로는 폭이 0이라 안 보임 */
+.nav-menu-list a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 1.5px;
+  background: #5C6B3A;
+  /* 이끼색 */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* 마우스를 올렸을 때 또는 현재 보고 있는 섹션의 메뉴(active)일 때 글자색 변경 */
+.nav-menu-list a:hover,
+.nav-menu-list a.active-section {
+  color: #5C6B3A;
+  /* 이끼색 */
+}
+
+/* 마우스를 올렸을 때 또는 현재 섹션일 때 밑줄이 좌→우로 펼쳐지며 나타남 */
+.nav-menu-list a:hover::after,
+.nav-menu-list a.active-section::after {
+  transform: scaleX(1);
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   6. 히어로 (S1) — 페이지 맨 처음 화면
+   화면 전체 높이를 채우고, 가운데에 꽃 성장 로고 + "여울 농장" 큰 글씨가 있습니다.
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── 히어로 영상 래퍼 (.video div) ──
+   폴더 이미지 안 상단에 영상이 끼워진 것처럼 보이도록
+   position: absolute 로 폴더 위에 겹쳐서 배치합니다.
+   top 값을 올리거나 내려서 세로 위치를 조정하세요.
+   ────────────────────────────────────────────────────────── */
+.video {
+  position: absolute;        /* 히어로 섹션 기준으로 절대 위치 */
+  top: 35%;                  /* ← 위치 조정: 숫자를 높이면 아래로 내려갑니다 */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;                /* 배경 이미지 위, 타이틀 아래 */
+  width: 500px;              /* 폴더 안에 맞는 영상 너비 */
+}
+
+/* ── 영상 요소 자체 ── */
+.hero {
+  width: 100%;
+  display: block;
+  border-radius: 6px;        /* 폴더 안 종이 느낌의 살짝 둥근 모서리 */
+
+  /* 자연스러운 그림자 — 종이가 폴더 안에 살짝 눌린 느낌 */
+  box-shadow:
+    0 4px 12px rgba(44, 36, 22, .22),
+    0 12px 32px rgba(44, 36, 22, .15),
+    inset 0 0 0 1px rgba(44, 36, 22, .06);
+
+  cursor: pointer;           /* 클릭으로 일시정지/재생 가능 표시 */
+}
+
+/* ── 재생 버튼 오버레이 ──
+   영상 위에 절대 위치로 올라가 있고,
+   .hidden 클래스가 붙으면 사라집니다.
+   ────────────────────────────────────────────────────────── */
+.hero-play-btn {
+  position: absolute;
+  inset: 0;                  /* 영상 래퍼 전체를 덮음 */
+  width: 100%;
+  height: 100%;
+  background: rgba(44, 36, 22, .28);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background .3s;
+  z-index: 3;
+}
+
+.hero-play-btn:hover {
+  background: rgba(44, 36, 22, .42);
+}
+
+/* 원형 배경 + 삼각형 아이콘 */
+.hero-play-btn-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .15);
+  border: 2px solid rgba(255, 255, 255, .75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: transform .25s, background .25s;
+}
+
+.hero-play-btn:hover .hero-play-btn-circle {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, .25);
+}
+
+/* "재생" 텍스트 라벨 */
+.hero-play-btn-label {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  color: rgba(255, 255, 255, .9);
+}
+
+/* 재생 중에는 버튼 숨김 */
+.hero-play-btn.hidden {
+  display: none;
+}
+
+.hero-section {
+  min-height: 100vh;
+  /* 화면 높이 전체를 채움 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 24px 70px;
+  position: relative;
+  background: url(../img/main_img.jpeg) center ;
+}
+
+.main_tt{
+  margin-top: 650px;
+  margin-left: 250px;
+}
+
+/* "여울 농장" 메인 제목 */
+.hero-main-title {
+  font-family: 'TMoneyDungunbaram';
+  font-weight: 900;
+  font-size: clamp(44px, 7vw, 50px);
+  color: #2C2416;
+  /* 진한 흙색 */
+  margin: 14px 0 0;
+  line-height: 1.1;
+}
+
+/* "Yeowol Farm" 영문 이름 */
+.hero-english-name {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  font-size: clamp(16px, 2vw, 22px);
+  letter-spacing: .42em;
+  text-transform: uppercase;
+  color: #5C6B3A;
+  /* 이끼색 */
+  margin: 50px 0 0;
+}
+
+/* "디자인으로 브랜드를 키웁니다" 태그라인 */
+.hero-tagline {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: clamp(18px, 2vw, 23px);
+  color: #4A3F2D;
+  /* 중간 흙색 */
+  margin: 50px 0 0;
+}
+
+/* 맨 아래 "↓ 농장 둘러보기" 스크롤 유도 문구 */
+.hero-scroll-hint {
+  margin-top: 50px;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 15px;
+  letter-spacing: .16em;
+  color: #8A7B62;
+  /* 흐린 흙색 */
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 스크롤 유도 문구의 화살표(⌄) — 위아래로 둥둥 떠다님 */
+.hero-scroll-hint-arrow {
+  font-size: 20px;
+  animation: float-up-down 2s ease-in-out infinite;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   7. About (S2) — 소개 섹션
+   왼쪽엔 캐릭터 일러스트, 오른쪽엔 이름/소개글/스킬태그가 있고
+   가운데 경계에 폴라로이드 사진 스티커가 걸쳐 있습니다.
+   ════════════════════════════════════════════════════════════════ */
+
+/* About 전체를 좌(45%) / 우(나머지) 두 칸으로 나누는 그리드 */
+.about-two-column-grid {
+  display: grid;
+  grid-template-columns: 45% 1fr;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+  /* 폴라로이드 사진이 absolute로 이 안에 걸쳐지기 때문에 필요 */
+}
+
+.about-video {
+  width: 100%;
+  border-radius: 24px;
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  box-shadow: 0 30px 60px -30px rgba(44, 36, 22, .4);
+  border: 1px solid #E0D6C4;
+}
+
+/* 왼쪽 캐릭터 일러스트가 들어가는 둥근 사각 프레임 */
+.about-illustration-frame {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(160deg, #efe7d6, #e7ddc6);
+  /* 따뜻한 베이지 그라데이션 */
+  aspect-ratio: 1/1;
+  /* 가로:세로 1:1 정사각형 비율 유지 */
+  box-shadow: 0 30px 60px -30px rgba(44, 36, 22, .4);
+  border: 1px solid #E0D6C4;
+  /* 라인색 */
+}
+
+/* 일러스트 프레임 안 왼쪽 아래에 붙는 플레이스홀더 메모 위치 */
+.about-illustration-frame .placeholder-note {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 3;
+}
+
+/* [폴라로이드 사진 스티커] 좌우 칸 경계에 살짝 걸쳐서 떠 있는 사진 */
+.about-polaroid-sticker {
+  position: absolute;
+  left: 38%;
+  top: 70%;
+  transform: translate(-50%, -50%) rotate(10deg);
+  /* 살짝 기울어진 형태 */
+  z-index: 10;
+  width: 110px;
+  cursor: pointer;
+  transition: transform .35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 폴라로이드의 흰색 액자 부분 */
+.about-polaroid-frame {
+  background: #fff;
+  padding: 8px 8px 28px;
+  /* 아래쪽 여백을 넓게 둬서 폴라로이드 느낌 */
+  border-radius: 3px;
+}
+
+/* 폴라로이드 안의 실제 사진(또는 placeholder) 영역 */
+.about-polaroid-photo-area {
+  width: 94px;
+  height: 120px;
+  background: linear-gradient(135deg, #D4C4A8 0%, #C4956A 100%);
+  /* 모래색→크라프트색 그라데이션 */
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.about-polaroid-photo-area svg {
+  width: 70px;
+  height: 70px;
+}
+
+/* 폴라로이드 사진 아래 적힌 이름 라벨 ("Park Yeowol 🌱") */
+.about-polaroid-name-label {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 10px;
+  color: #8A7B62;
+  /* 흐린 흙색 */
+  text-align: center;
+  margin-top: 6px;
+}
+
+/* 폴라로이드 위/아래에 붙어있는 테이프 모양 장식 */
+.about-polaroid-sticker::before,
+.about-polaroid-sticker::after {
+  content: "";
+  position: absolute;
+  width: 38px;
+  height: 14px;
+  background: rgba(212, 196, 168, .7);
+  /* 반투명 모래색 테이프 */
+  border-radius: 2px;
+  z-index: 11;
+}
+
+.about-polaroid-sticker::before {
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-8deg);
+}
+
+.about-polaroid-sticker::after {
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%) rotate(5deg);
+}
+
+/* 오른쪽 칸 전체를 감싸는 래퍼 div
+   이 클래스 자체에는 스타일이 없습니다 — 안의 자식 요소들(.about-name-heading 등)이
+   각자 스타일을 가지고 있어서 래퍼는 그냥 묶어주는 역할만 합니다 */
+
+/* 오른쪽 칸 - "안녕하세요, 저는 여울입니다" 큰 이름 글씨 */
+.about-name-heading {
+  font-family: 'OngleipParkDahyeon';
+  font-size: 48px;
+  font-weight: 400;
+  color: #2C2416;
+  /* 진한 흙색 */
+  line-height: 1.25;
+  margin: 18px 0 0;
+}
+
+/* 이름 글씨 안에서 "여울" 부분만 강조색으로 */
+.about-name-highlight {
+  color: #5C6B3A;
+  /* 이끼색 */
+}
+
+/* "Brand & UX/UI Designer" 역할 영문 표기 */
+.about-role-label {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  letter-spacing: .16em;
+  color: #5C6B3A;
+  /* 이끼색 */
+  text-transform: uppercase;
+  margin: 14px 0 0;
+}
+
+/* 자기소개 문단 */
+.about-intro-paragraph {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 18px;
+  line-height: 1.95;
+  color: #4A3F2D;
+  /* 중간 흙색 */
+  margin: 24px 0 0;
+  max-width: 46ch;
+}
+
+/* 스킬 태그들(Branding, UX/UI 등)을 감싸는 가로 배치 영역 */
+.about-skill-tags-row {
+  margin: 28px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+/* "Currently / Based in" 정보가 들어가는 하단 박스 */
+.about-meta-info-box {
+  margin: 30px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid #E0D6C4;
+  /* 라인색 위쪽 구분선 */
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* "Currently" / "Based in" 한 줄 한 줄 */
+.about-meta-info-row {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+/* "Currently", "Based in" 같은 라벨 글자 */
+.about-meta-info-label {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #5C6B3A;
+  /* 이끼색 */
+  width: 88px;
+  flex: none;
+  /* 너비가 줄어들지 않도록 고정 */
+}
+
+/* 라벨 옆에 오는 실제 내용 글자 */
+.about-meta-info-value {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 15px;
+  color: #4A3F2D;
+  /* 중간 흙색 */
+}
+
+/* 내용 글자 중 굵게 강조된 부분 (예: "부사네 · 와히") */
+.about-meta-info-value b {
+  color: #2C2416;
+  /* 진한 흙색 */
+  font-weight: 600;
+}
+
+/* "Based in" 옆에 붙는 작은 파도 아이콘 */
+.about-wave-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* 밑에 내용 추가 */
+.add{
+  width: 1200px;
+  margin: 50px auto;
+  height: 400px;
+  display: flex;
+}
+.bb{
+  width: 55px;
+  height: 400px;
+}
+/* 경력사항 */
+.work{
+  width: 492px;
+  height: 400px;
+}
+.box{
+  margin-top: 50px;
+  display: block;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  font-size: 18px;
+}
+.right {
+  width: 700px; /* 또는 원하는 너비 */
+}
+.box li{
+  width: 200px;
+  background-color: rgb(226, 220, 185);
+  border-radius: 50px;
+  height: 250px;
+  padding: 20px;
+}
+.box1, .box2{
+  margin-right: 10px;
+}
+.tool1{
+  width: 40px;
+  height: 40px;
+}
+
+.tool_b{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.box1 p{
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+/* 타임라인 */
+.timeline {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(17, 24, 39, 0.07);
+}
+
+.timeline-item:last-child {
+  border-bottom: 0;
+}
+
+.timeline-year {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.timeline-role strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.timeline-role span {
+  color: var(--text-muted);
+  font-size: 0.96rem;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   8. 작물 소개 (S3) — 부사네/와히 폴더 카드 섹션
+   크라프트지 느낌 카드 두 개가 나란히 있고, 클릭하면 모달이 열립니다.
+   ════════════════════════════════════════════════════════════════ */
+
+/* 사과 아이콘 + 제목을 가로로 묶는 줄 */
+.crops-title-with-apple {
+  display: flex;
+  justify-content: center;
+}
+
+/* 제목 옆에 붙는 사과 그림 아이콘 */
+.crops-apple-icon {
+  width: 60px;
+  margin-right: 20px;
+}
+
+/* 작물 소개 섹션 전체 배경 */
+.crops-section {
+  background: #F1EADD;
+  /* 살짝 진한 베이지 */
+}
+
+/* 작물 섹션 안의 콘텐츠 — z-index를 줘서 뒤에 깔리는 나무 텍스처보다 위에 보이게 함 */
+.crops-content-wrap {
+  position: relative;
+  z-index: 2;
+}
+
+/* 작물 섹션 맨 아래 깔리는 나무 테이블 느낌 배경 텍스처 */
+.crops-wood-texture-bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40%;
+  z-index: 0;
+  background:
+    linear-gradient(180deg, transparent, rgba(120, 82, 46, .1)),
+    repeating-linear-gradient(91deg, #caa882 0 90px, #c09c74 90px 92px);
+  opacity: .45;
+}
+
+/* 작물 섹션 맨 위 제목+설명을 묶는 영역 (가운데 정렬) */
+.crops-header-area {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 70px;
+}
+
+/* "Crops · 작물 소개" 라벨을 가운데 정렬하기 위한 클래스 */
+.crops-section-label {
+  justify-content: center;
+}
+
+/* 작물 섹션 설명 캡션을 가운데 정렬하기 위한 클래스 */
+.crops-section-caption {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 부사네/와히 카드 두 개를 나란히 배치하는 영역 */
+.crops-folder-cards-row {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+  perspective: 1200px;
+  /* 카드가 살짝 기울어진 3D 느낌을 내기 위한 설정 */
+}
+
+/* [폴더 카드] 부사네/와히 공통 카드 모양 — 크라프트지 색 종이 폴더처럼 생김 */
+.folder-card {
+  position: relative;
+  z-index: 2;
+  width: 340px;
+  background: #C4956A;
+  /* 크라프트지색 */
+  border-radius: 6px 14px 14px 14px;
+  padding: 34px 28px 30px;
+  box-shadow: 0 26px 46px -22px rgba(60, 42, 20, .6);
+  cursor: pointer;
+  transition: transform .45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow .45s;
+}
+
+/* 폴더 카드 위쪽에 붙은 작은 탭(손잡이 부분) */
+.folder-card::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 24px;
+  width: 120px;
+  height: 18px;
+  background: #C4956A;
+  /* 크라프트지색 */
+  border-radius: 8px 8px 0 0;
+  box-shadow: inset 0 2px 3px rgba(255, 255, 255, .15);
+}
+
+/* 폴더 카드 표면에 깔리는 종이 질감 텍스처 */
+.folder-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+/* 부사네 폴더 카드는 시계방향으로 살짝 기울어짐 */
+.folder-card.busane {
+  transform: rotate(3deg);
+}
+
+/* 와히 폴더 카드는 반시계방향으로 살짝 기울어짐 */
+.folder-card.wahi {
+  transform: rotate(-2deg);
+}
+
+/* 카드에 마우스를 올리면 똑바로 서면서 살짝 위로 떠오름 */
+.folder-card:hover {
+  transform: rotate(0deg) translateY(-8px);
+  box-shadow: 0 38px 60px -24px rgba(60, 42, 20, .7);
+}
+
+/* 폴더 카드 위쪽에 달려있는 집게(클립) 모양 SVG 위치 */
+.folder-card-clip-icon {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 46px;
+  height: 64px;
+  z-index: 5;
+}
+
+/* 카드 오른쪽 위에 붙는 "수확완료" 도장 스탬프 */
+.folder-card-stamp {
+  position: absolute;
+  top: 18px;
+  right: 14px;
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 13px;
+  border-radius: 7px;
+  border: 2px solid #3B2314;
+  /* 와히 에스프레소 브라운 (스탬프 잉크색으로 재사용) */
+  transform: rotate(8deg);
+  color: #3B2314;
+  /* 와히 에스프레소 브라운 */
+  background: rgba(255, 255, 255, .85);
+}
+
+/* 카드 안에 들어가는 브랜드 로고가 담기는 흰색 둥근 박스 */
+.folder-card-logo-box {
+  width: 84px;
+  height: 84px;
+  margin: 6px auto 0;
+  background: #fff;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 16px -8px rgba(0, 0, 0, .3);
+  padding: 12px;
+}
+
+.folder-card-logo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* 이미지 비율을 유지하면서 박스 안에 맞춤 */
+}
+
+/* 카드 제목 ("부사네", "와히") */
+.folder-card-title {
+  font-family: 'GoyangDeokyang', sans-serif;
+  font-weight: 400;
+  font-size: 27px;
+  color: #fff;
+  text-align: center;
+  margin: 18px 0 0;
+  text-shadow: 0 1px 2px rgba(60, 42, 20, .4);
+}
+
+/* 카드 부제목 ("작업일지 No.01 · Start 2026") */
+.folder-card-subtitle {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: .06em;
+  color: rgba(255, 255, 255, .85);
+  text-align: center;
+  margin: 7px 0 0;
+  text-transform: uppercase;
+}
+
+/* 카드 아래쪽 미리보기 영역 (컬러 스와치 + 작은 사진) */
+.folder-card-preview-box {
+  margin: 22px 0 0;
+  background: #F5F0E8;
+  /* 부사네 크림 */
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, .08);
+}
+
+/* 와히 카드는 미리보기 배경을 와히 크레마 색으로 다르게 */
+.folder-card-preview-box.wahi-style {
+  background: #fffcf6;
+  /* 와히 크레마 */
+}
+
+/* 미리보기 안 동그란 컬러 스와치들을 감싸는 영역 */
+.folder-card-color-dots-row {
+  display: flex;
+  gap: 6px;
+}
+
+/* 동그란 컬러 스와치 하나 (색은 각 i 태그에 인라인 클래스로 지정) */
+.folder-card-color-dots-row i {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: block;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+}
+
+/* 부사네 컬러 스와치 4종 */
+.color-dot-busane-green {
+  background: #8acc7d;
+  /* 부사네 메인 그린 */
+}
+
+.color-dot-busane-blue {
+  background: #00bdff;
+  /* 부사네 블루 */
+}
+
+.color-dot-busane-pink {
+  background: #ff487c;
+  /* 부사네 핑크 */
+}
+
+.color-dot-busane-beige {
+  background: #6d6e71;
+  /* 부사네 베이지 */
+}
+
+/* 와히 컬러 스와치 3종 */
+.color-dot-wahi-espresso {
+  background: #3B2314;
+  /* 와히 에스프레소 브라운 */
+}
+
+.color-dot-wahi-crema {
+  background: #F5ECD7;
+  /* 와히 크레마 */
+}
+
+.color-dot-wahi-black {
+  background: #191818;
+  /* 와히 블랙 */
+}
+
+/* 미리보기 영역 안의 작은 폴라로이드 사진 */
+.folder-card-mini-photo {
+  width: 50px;
+  height: 50px;
+  padding: 4px 4px 12px;
+  border-radius: 2px;
+  flex: none;
+}
+
+.folder-card-mini-photo img {
+  width: 100%;
+  height: 38px;
+  object-fit: cover;
+  border-radius: 1px;
+}
+
+/* 와히 카드 미리보기에 들어가는 작은 QR코드 아이콘 */
+.folder-card-mini-qr-icon {
+  width: 46px;
+  height: 46px;
+  flex: none;
+}
+
+/* "펼쳐보기 ↓" 버튼처럼 보이는 카드 하단 문구 */
+.folder-card-expand-text {
+  margin: 20px 0 0;
+  text-align: center;
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 16px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* "펼쳐보기" 옆 화살표 — 마우스 올리면 아래로 살짝 이동 */
+.folder-card-expand-arrow {
+  transition: transform .3s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.folder-card:hover .folder-card-expand-arrow {
+  transform: translateY(4px);
+}
+
+/* 카드 맨 아래에 살짝 걸쳐있는 "클릭해서 열기" 힌트 — 평소엔 안 보이고 호버시에만 나타남 */
+.folder-card-click-hint {
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Urbanist', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #5C6B3A;
+  /* 이끼색 */
+  background: #F7F3EC;
+  /* 밝은 베이지 (농장 기본 배경색과 동일) */
+  border: 1.5px solid #E0D6C4;
+  /* 라인색 */
+  border-radius: 99px;
+  padding: 5px 14px;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
+  opacity: 0;
+  transition: opacity .3s;
+  pointer-events: none;
+}
+
+.folder-card:hover .folder-card-click-hint {
+  opacity: 1;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   9. 모달 (팝업) 공통 시스템
+   폴더 카드를 클릭하면 화면 전체를 덮는 팝업이 열립니다.
+   ════════════════════════════════════════════════════════════════ */
+
+/* 모달 배경 — 화면 전체를 덮는 어두운 반투명 막 */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  /* top/right/bottom/left 를 한번에 0으로 설정 */
+  z-index: 200;
+  background: rgba(44, 36, 22, 0);
+  /* 평소엔 투명, JS가 "open" 클래스를 추가하면 어두워짐 */
+  display: none;
+  overflow-y: auto;
+  transition: background .4s;
+}
+
+.modal-overlay.open {
+  display: block;
+  background: rgba(44, 36, 22, .6);
+  /* 진한 흙색 60% 불투명 */
+}
+
+/* 모달 안의 실제 콘텐츠 박스 — 열릴 때 아래에서 위로 슥 올라오는 효과 */
+.modal-content-box {
+  position: relative;
+  min-height: 100vh;
+  transform: translateY(40px);
+  opacity: 0;
+  transition: transform .55s cubic-bezier(0.22, 0.61, 0.36, 1), opacity .45s;
+}
+
+.modal-overlay.open .modal-content-box {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* 모달이 열려있는 동안 배경(body) 스크롤을 막기 위한 클래스 */
+body.modal-is-open {
+  overflow: hidden;
+}
+
+/* 모달 우측 상단 ✕ 닫기 버튼 — 평소엔 숨겨져있고 모달이 열릴 때만 보임 */
+.modal-close-button {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  z-index: 300;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(247, 243, 236, .92);
+  /* 밝은 베이지 92% */
+  backdrop-filter: blur(8px);
+  border: 1.5px solid #E0D6C4;
+  /* 라인색 */
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px -8px rgba(44, 36, 22, .4);
+  transition: background .25s, transform .25s;
+  font-size: 22px;
+  color: #2C2416;
+  /* 진한 흙색 */
+}
+
+.modal-close-button:hover {
+  background: #2C2416;
+  /* 진한 흙색 */
+  color: #fff;
+  transform: rotate(90deg);
+  /* 마우스 올리면 ✕가 빙글 돌아감 */
+}
+
+.modal-close-button.visible {
+  display: flex;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   10. 케이스 스터디(모달) 안에서 부사네/와히 공통으로 쓰는 부품들
+   ════════════════════════════════════════════════════════════════ */
+
+/* "전략 요약" 섹션 — 왼쪽 포지셔닝맵 / 오른쪽 페르소나 두 칸 그리드 */
+.busane-case-study-strategy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+/* "전략 요약" 섹션 — 왼쪽 포지셔닝맵 / 오른쪽 페르소나 두 칸 그리드 */
+.wahi-case-study-strategy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+/* 전략 섹션 제목 ("부산이라는 도시를 파는 브랜드") */
+.busane-case-study-strategy-heading {
+  font-family:'GoyangDeokyang', sans-serif;
+  font-weight: 400;
+  font-size: clamp(22px, 2.6vw, 32px);
+  line-height: 1.3;
+  margin: 16px 0 0;
+}
+
+/* 전략 섹션 제목 ("부산이라는 도시를 파는 브랜드") */
+.wahi-case-study-strategy-heading {
+  font-family:'GoyangDeokyang', sans-serif;
+  font-weight: 400;
+  font-size: clamp(22px, 2.6vw, 32px);
+  line-height: 1.3;
+  margin: 16px 0 0;
+}
+
+/* 전략 섹션 설명 본문 */
+.busane-case-study-strategy-paragraph {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 16px;
+  line-height: 1.85;
+  margin: 14px 0 0;
+  opacity: .85;
+}
+
+/* 전략 섹션 설명 본문 */
+.wahi-case-study-strategy-paragraph {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 16px;
+  line-height: 1.85;
+  margin: 14px 0 0;
+  opacity: .85;
+}
+
+/* [포지셔닝 맵] 2x2 십자선 다이어그램 전체 박스 */
+.busane-positioning-map-box {
+  margin: 26px 0 0;
+  aspect-ratio: 1/1;
+  max-width: 340px;
+  position: relative;
+  border-radius: 14px;
+}
+
+/* [포지셔닝 맵] 2x2 십자선 다이어그램 전체 박스 */
+.wahi-positioning-map-box {
+  margin: 26px 0 0;
+  aspect-ratio: 1/1;
+  max-width: 340px;
+  position: relative;
+  border-radius: 14px;
+}
+
+/* 포지셔닝 맵의 가로/세로 십자선 공통 스타일 */
+.busane-positioning-map-axis-line {
+  position: absolute;
+  background: currentColor;
+  opacity: .3;
+}
+
+/* 포지셔닝 맵의 가로/세로 십자선 공통 스타일 */
+.wahi-positioning-map-axis-line {
+  position: absolute;
+  background: currentColor;
+  opacity: .3;
+}
+
+/* 가로 축선 (왼쪽-오른쪽을 가로지르는 선) */
+.busane-positioning-map-axis-horizontal {
+  left: 6%;
+  right: 6%;
+  top: 50%;
+  height: 1.5px;
+}
+
+/* 가로 축선 (왼쪽-오른쪽을 가로지르는 선) */
+.wahi-positioning-map-axis-horizontal {
+  left: 6%;
+  right: 6%;
+  top: 50%;
+  height: 1.5px;
+}
+
+/* 세로 축선 (위-아래를 가로지르는 선) */
+.busane-positioning-map-axis-vertical {
+  top: 6%;
+  bottom: 6%;
+  left: 50%;
+  width: 1.5px;
+}
+
+/* 세로 축선 (위-아래를 가로지르는 선) */
+.wahi-positioning-map-axis-vertical {
+  top: 6%;
+  bottom: 6%;
+  left: 50%;
+  width: 1.5px;
+}
+
+/* 포지셔닝 맵 네 방향에 붙는 라벨 글자 공통 스타일 (예: "스토리", "가격", "로컬", "전국") */
+.busane-positioning-map-axis-label {
+  position: absolute;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  opacity: .7;
+}
+
+/* 포지셔닝 맵 네 방향에 붙는 라벨 글자 공통 스타일 (예: "스토리", "가격", "로컬", "전국") */
+.wahi-positioning-map-axis-label {
+  position: absolute;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  opacity: .7;
+}
+
+/* 위쪽 라벨 위치 */
+.busane-positioning-map-label-top {
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 위쪽 라벨 위치 */
+.wahi-positioning-map-label-top {
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 아래쪽 라벨 위치 */
+.busane-positioning-map-label-bottom {
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 아래쪽 라벨 위치 */
+.wahi-positioning-map-label-bottom {
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 왼쪽 라벨 위치 (세로로 회전되어 있음) */
+.busane-positioning-map-label-left {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left;
+}
+
+/* 왼쪽 라벨 위치 (세로로 회전되어 있음) */
+.wahi-positioning-map-label-left {
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left;
+}
+
+/* 오른쪽 라벨 위치 (세로로 회전되어 있음) */
+.busane-positioning-map-label-right {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: right;
+}
+
+/* 오른쪽 라벨 위치 (세로로 회전되어 있음) */
+.wahi-positioning-map-label-right {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: right;
+}
+
+/* 맵 위에 표시되는 브랜드 위치 알약 모양 점 (예: "부사네", "와히") */
+.busane-positioning-map-brand-dot {
+  position: absolute;
+  padding: 8px 14px;
+  border-radius: 99px;
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, .3);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* 맵 위에 표시되는 브랜드 위치 알약 모양 점 (예: "부사네", "와히") */
+.wahi-positioning-map-brand-dot {
+  position: absolute;
+  padding: 8px 14px;
+  border-radius: 99px;
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, .3);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* 브랜드 점 왼쪽에 붙는 작은 흰 동그라미 */
+.busane-positioning-map-brand-dot::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* 브랜드 점 왼쪽에 붙는 작은 흰 동그라미 */
+.wahi-positioning-map-brand-dot::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* [페르소나 카드] 두 장의 카드를 세로로 쌓는 영역 */
+.busane-persona-cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* [페르소나 카드] 두 장의 카드를 세로로 쌓는 영역 */
+.wahi-persona-cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* 페르소나 카드 한 장 — 동그란 아바타 + 이름/나이/인용구 두 칸 그리드 */
+.busane-persona-card {
+  background: #fff;
+  padding: 14px 14px 20px;
+  border-radius: 3px;
+  box-shadow: 0 16px 30px -16px rgba(0, 0, 0, .4);
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+/* 페르소나 카드 한 장 — 동그란 아바타 + 이름/나이/인용구 두 칸 그리드 */
+.wahi-persona-card {
+  background: #fff;
+  padding: 14px 14px 20px;
+  border-radius: 3px;
+  box-shadow: 0 16px 30px -16px rgba(0, 0, 0, .4);
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+/* 첫 번째 페르소나 카드는 살짝 시계방향으로 기울어짐 */
+.busane-persona-card:nth-child(1) {
+  transform: rotate(-1.5deg);
+}
+
+/* 첫 번째 페르소나 카드는 살짝 시계방향으로 기울어짐 */
+.wahi-persona-card:nth-child(1) {
+  transform: rotate(-1.5deg);
+}
+
+/* 두 번째 페르소나 카드는 반대 방향으로 기울어짐 (자연스러운 느낌) */
+.busane-persona-card:nth-child(2) {
+  transform: rotate(1.5deg);
+}
+
+/* 두 번째 페르소나 카드는 반대 방향으로 기울어짐 (자연스러운 느낌) */
+.wahi-persona-card:nth-child(2) {
+  transform: rotate(1.5deg);
+}
+
+/* 페르소나 카드 왼쪽의 동그란 아바타 영역 (배경색은 부사네/와히 클래스에서 따로 지정) */
+.busane-persona-avatar-circle {
+  width: 84px;
+  height: 84px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 페르소나 카드 왼쪽의 동그란 아바타 영역 (배경색은 부사네/와히 클래스에서 따로 지정) */
+.wahi-persona-avatar-circle {
+  width: 84px;
+  height: 84px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 페르소나 이름 (예: "부산 여행자 · 지은") */
+.busane-persona-name {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #2C2416;
+  /* 진한 흙색 */
+}
+
+/* 페르소나 이름 (예: "부산 여행자 · 지은") */
+.wahi-persona-name {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #2C2416;
+  /* 진한 흙색 */
+}
+
+/* 페르소나 나이/거주지 정보 (예: "28세 · 서울 거주") */
+.busane-persona-info {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 12.5px;
+  color: #8A7B62;
+  /* 흐린 흙색 */
+  margin-top: 3px;
+}
+
+/* 페르소나 나이/거주지 정보 (예: "28세 · 서울 거주") */
+.wahi-persona-info {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 12.5px;
+  color: #8A7B62;
+  /* 흐린 흙색 */
+  margin-top: 3px;
+}
+
+/* 페르소나 인용구 (예: "부산스러운 걸 사가고 싶어요") */
+.busane-persona-quote {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 15px;
+  color: #5C6B3A;
+  /* 이끼색 */
+  margin-top: 9px;
+  line-height: 1.5;
+}
+
+/* 페르소나 인용구 (예: "부산스러운 걸 사가고 싶어요") */
+.wahi-persona-quote {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 15px;
+  color: #5C6B3A;
+  /* 이끼색 */
+  margin-top: 9px;
+  line-height: 1.5;
+}
+
+/* [VI 로고 비교] 흰배경/검배경 버전 로고를 나란히 보여주는 영역 */
+.busane-vi-logo-comparison-row {
+  margin: 40px auto 0;
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+}
+
+/* [VI 로고 비교] 흰배경/검배경 버전 로고를 나란히 보여주는 영역 */
+.wahi-vi-logo-comparison-row {
+  margin: 40px auto 0;
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+}
+
+/* [컬러 팔레트] 색상 칩 여러 개를 가로로 배치하는 영역 */
+.busane-color-palette-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+/* [컬러 팔레트] 색상 칩 여러 개를 가로로 배치하는 영역 */
+.wahi-color-palette-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+/* 색상 칩 하나 + 이름/HEX코드를 담는 박스 */
+.busane-color-palette-item {
+  width: 150px;
+}
+
+/* 색상 칩 하나 + 이름/HEX코드를 담는 박스 */
+.wahi-color-palette-item {
+  width: 150px;
+}
+
+/* 색상 칩 박스 공통 모양 (물감을 칠한 듯한 비대칭 모서리) */
+.busane-color-palette-chip {
+  height: 120px;
+  border-radius: 10px 10px 4px 30px;
+  box-shadow: 0 12px 22px -12px rgba(0, 0, 0, .4);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 색상 칩 박스 공통 모양 (물감을 칠한 듯한 비대칭 모서리) */
+.wahi-color-palette-chip {
+  height: 120px;
+  border-radius: 10px 10px 4px 30px;
+  box-shadow: 0 12px 22px -12px rgba(0, 0, 0, .4);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 색상 칩 아래쪽에 깔리는 살짝 어두운 그라데이션 (입체감) */
+.busane-color-palette-chip::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 34%;
+  background: rgba(0, 0, 0, .08);
+}
+
+/* 색상 칩 아래쪽에 깔리는 살짝 어두운 그라데이션 (입체감) */
+.wahi-color-palette-chip::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 34%;
+  background: rgba(0, 0, 0, .08);
+}
+
+/* 색상 칩 아래 이름/HEX 코드를 감싸는 영역 */
+.busane-color-palette-info {
+  margin-top: 12px;
+}
+
+/* 색상 칩 아래 이름/HEX 코드를 감싸는 영역 */
+.wahi-color-palette-info {
+  margin-top: 12px;
+}
+
+/* 색상 한글 이름 (예: "테라코타") */
+.busane-color-palette-name {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 15px;
+  color: #2C2416;
+  /* 진한 흙색 */
+}
+
+/* 색상 한글 이름 (예: "테라코타") */
+.wahi-color-palette-name {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 15px;
+  color: #2C2416;
+  /* 진한 흙색 */
+}
+
+/* HEX 코드 글자 (예: "#C4694F") */
+.busane-color-palette-hex-code {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: .04em;
+  color: #8A7B62;
+  /* 흐린 흙색 */
+  margin-top: 2px;
+}
+
+/* HEX 코드 글자 (예: "#C4694F") */
+.wahi-color-palette-hex-code {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: .04em;
+  color: #8A7B62;
+  /* 흐린 흙색 */
+  margin-top: 2px;
+}
+
+/* [타이포그래피] 폰트 샘플 카드 3개를 나란히 배치하는 그리드 */
+.busane-typography-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+}
+
+/* [타이포그래피] 폰트 샘플 카드 3개를 나란히 배치하는 그리드 */
+.wahi-typography-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+}
+
+/* 폰트 샘플 카드 한 장 */
+.busane-typography-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 14px 30px -18px rgba(0, 0, 0, .3);
+  text-align: center;
+}
+
+/* 폰트 샘플 카드 한 장 */
+.wahi-typography-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 14px 30px -18px rgba(0, 0, 0, .3);
+  text-align: center;
+}
+
+/* 카드 위쪽 - 폰트 이름 (예: "RomanticGumi") */
+.busane-typography-card-font-name {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #8A7B62;
+  /* 흐린 흙색 */
+}
+
+/* 카드 위쪽 - 폰트 이름 (예: "RomanticGumi") */
+.wahi-typography-card-font-name {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #8A7B62;
+  /* 흐린 흙색 */
+}
+
+/* 카드 중간 - 실제 그 폰트로 보여주는 샘플 글씨 (예: "오늘의 부산") */
+.busane-typography-card-sample-text {
+  font-size: 34px;
+  color: #2C2416;
+  /* 진한 흙색 */
+  margin-top: 16px;
+  line-height: 1.3;
+}
+
+/* 카드 중간 - 실제 그 폰트로 보여주는 샘플 글씨 (예: "오늘의 부산") */
+.wahi-typography-card-sample-text {
+  font-size: 34px;
+  color: #2C2416;
+  /* 진한 흙색 */
+  margin-top: 16px;
+  line-height: 1.3;
+}
+
+/* 카드 아래쪽 - 용도 설명 (예: "Display · 헤드라인") */
+.busane-typography-card-usage-text {
+  font-size: 15px;
+  color: #8A7B62;
+  /* 흐린 흙색 */
+  margin-top: 8px;
+  font-family: 'Pretendard', sans-serif;
+}
+
+/* 카드 아래쪽 - 용도 설명 (예: "Display · 헤드라인") */
+.wahi-typography-card-usage-text {
+  font-size: 15px;
+  color: #8A7B62;
+  /* 흐린 흙색 */
+  margin-top: 8px;
+  font-family: 'Pretendard', sans-serif;
+}
+
+/* [브라우저 목업] 웹사이트 화면을 보여줄 때 쓰는 브라우저 창 모양 프레임 */
+.browser-mockup-frame {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 36px 70px -34px rgba(0, 0, 0, .5);
+  border: 1px solid #E0D6C4;
+  /* 라인색 */
+  background: #fff;
+}
+
+/* 브라우저 상단 바 (빨/노/초 점 + 주소창이 있는 줄) */
+.browser-mockup-top-bar {
+  height: 38px;
+  background: #ece6da;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 16px;
+}
+
+/* 빨/노/초 동그란 점 공통 스타일 */
+.browser-mockup-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: block;
+}
+
+.browser-mockup-dot-red {
+  background: #ff5f57;
+}
+
+.browser-mockup-dot-yellow {
+  background: #febc2e;
+}
+
+.browser-mockup-dot-green {
+  background: #28c840;
+}
+
+/* 브라우저 상단의 가짜 주소창 (예: "parkyeowol.github.io/Busane") */
+.browser-mockup-url-bar {
+  margin-left: 14px;
+  height: 20px;
+  flex: 1;
+  max-width: 340px;
+  background: #fff;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 11px;
+  color: #9b9384;
+}
+
+/* 브라우저 안에 들어가는 실제 화면 스크린샷 이미지 */
+.browser-mockup-screenshot {
+  width: 100%;
+  display: block;
+}
+
+/* [서브페이지 썸네일] 화면 캡쳐 3개를 나란히 보여주는 그리드 */
+.busane-subpage-thumbnails-grid {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+/* [서브페이지 썸네일] 화면 캡쳐 3개를 나란히 보여주는 그리드 */
+.wahi-subpage-thumbnails-grid {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+/* 썸네일 카드 한 장 */
+.busane-subpage-thumbnail-card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 14px 28px -16px rgba(0, 0, 0, .4);
+  border: 1px solid #E0D6C4;
+  /* 라인색 */
+  background: #fff;
+}
+
+/* 썸네일 카드 한 장 */
+.wahi-subpage-thumbnail-card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 14px 28px -16px rgba(0, 0, 0, .4);
+  border: 1px solid #E0D6C4;
+  /* 라인색 */
+  background: #fff;
+}
+
+.busane-subpage-thumbnail-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.wahi-subpage-thumbnail-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* 썸네일 아래 캡션 글씨 (예: "스토어 — 부산 제품 모음") */
+.busane-subpage-thumbnail-caption {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 12.5px;
+  color: #8A7B62;
+  /* 흐린 흙색 */
+  padding: 10px 12px;
+}
+
+/* 썸네일 아래 캡션 글씨 (예: "스토어 — 부산 제품 모음") */
+.wahi-subpage-thumbnail-caption {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 12.5px;
+  color: #8A7B62;
+  /* 흐린 흙색 */
+  padding: 10px 12px;
+}
+
+/* [모바일 목업] 아이폰처럼 보이는 폰 프레임을 나란히 배치하는 영역 */
+.busane-phone-mockups-row {
+  margin-top: 30px;
+  display: flex;
+  gap: 26px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* [모바일 목업] 아이폰처럼 보이는 폰 프레임을 나란히 배치하는 영역 */
+.wahi-phone-mockups-row {
+  margin-top: 30px;
+  display: flex;
+  gap: 26px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* 폰 프레임 하나 (검은색 테두리) */
+.busane-phone-mockup-frame {
+  width: 210px;
+  border-radius: 30px;
+  background: #1c1c1c;
+  padding: 9px;
+  box-shadow: 0 26px 50px -22px rgba(0, 0, 0, .55);
+}
+
+/* 폰 프레임 하나 (검은색 테두리) */
+.wahi-phone-mockup-frame {
+  width: 210px;
+  border-radius: 30px;
+  background: #1c1c1c;
+  padding: 9px;
+  box-shadow: 0 26px 50px -22px rgba(0, 0, 0, .55);
+}
+
+/* 폰 프레임 안의 흰 화면 영역 */
+.busane-phone-mockup-screen {
+  border-radius: 23px;
+  overflow: hidden;
+  background: #fff;
+  aspect-ratio: 9/19;
+  position: relative;
+}
+
+/* 폰 프레임 안의 흰 화면 영역 */
+.wahi-phone-mockup-screen {
+  border-radius: 23px;
+  overflow: hidden;
+  background: #fff;
+  aspect-ratio: 9/19;
+  position: relative;
+}
+
+.busane-phone-mockup-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.wahi-phone-mockup-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* 폰 화면 위쪽의 카메라 노치(구멍) 모양 */
+.busane-phone-mockup-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 20px;
+  background: #1c1c1c;
+  border-radius: 0 0 12px 12px;
+  z-index: 2;
+}
+
+/* 폰 화면 위쪽의 카메라 노치(구멍) 모양 */
+.wahi-phone-mockup-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 20px;
+  background: #1c1c1c;
+  border-radius: 0 0 12px 12px;
+  z-index: 2;
+}
+
+/* [핵심 경험 플로우] 부사네 구매 5단계 / 와히 QR 플로우가 들어가는 어두운 섹션 */
+.flow-section-padding {
+  padding: 120px 40px;
+}
+
+/* 플로우 섹션 제목 (예: "상품을 사는 게 아니라...") */
+.busane-flow-section-title {
+  font-family: 'RomanticGumi', 'GoyangDeokyang', sans-serif;
+  font-weight: 400;
+  font-size: clamp(24px, 3.2vw, 40px);
+  text-align: center;
+  line-height: 1.35;
+  max-width: 24ch;
+  margin: 0 auto;
+}
+
+/* 플로우 섹션 제목 (예: "상품을 사는 게 아니라...") */
+.wahi-flow-section-title {
+  font-family: 'Suit';
+  font-weight: 400;
+  font-size: clamp(24px, 3.2vw, 40px);
+  text-align: center;
+  line-height: 1.35;
+  max-width: 24ch;
+  margin: 0 auto;
+}
+
+/* 플로우 단계 카드들을 가로로 나란히 배치하는 영역 */
+.busane-flow-steps-row {
+  margin: 60px 0 0;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+/* 플로우 단계 카드들을 가로로 나란히 배치하는 영역 */
+.wahi-flow-steps-row {
+  margin: 60px 0 0;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+/* 플로우 단계 카드 하나 (번호+아이콘+말풍선까지 포함) */
+.busane-flow-step-item {
+  flex: 1;
+  min-width: 160px;
+  max-width: 210px;
+  text-align: center;
+  position: relative;
+}
+
+/* 플로우 단계 카드 하나 (번호+아이콘+말풍선까지 포함) */
+.wahi-flow-step-item {
+  flex: 1;
+  min-width: 160px;
+  max-width: 210px;
+  text-align: center;
+  position: relative;
+}
+
+/* "STEP 1" 같은 단계 번호 글씨 */
+.busane-flow-step-number {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: .2em;
+  opacity: .6;
+}
+
+/* "STEP 1" 같은 단계 번호 글씨 */
+.wahi-flow-step-number {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: .2em;
+  opacity: .6;
+}
+
+/* 단계 번호 아래의 아이콘+이름이 들어가는 카드 박스 */
+.busane-flow-step-card {
+  margin: 12px 0 0;
+  border-radius: 14px;
+  padding: 22px 16px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, .1);
+  border: 1px solid rgba(255, 255, 255, .18);
+}
+
+/* 단계 번호 아래의 아이콘+이름이 들어가는 카드 박스 */
+.wahi-flow-step-card {
+  margin: 12px 0 0;
+  border-radius: 14px;
+  padding: 22px 16px;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, .1);
+  border: 1px solid rgba(255, 255, 255, .18);
+}
+
+/* 단계 카드 안의 SVG 아이콘 크기 */
+.busane-flow-step-icon {
+  width: 40px;
+  height: 40px;
+}
+
+/* 단계 카드 안의 SVG 아이콘 크기 */
+.wahi-flow-step-icon {
+  width: 40px;
+  height: 40px;
+}
+
+/* 단계 카드 안의 이름 글씨 (예: "브랜드 발견(집 카드)") */
+.busane-flow-step-name {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* 단계 카드 안의 이름 글씨 (예: "브랜드 발견(집 카드)") */
+.wahi-flow-step-name {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* 단계 카드 아래에 붙는 사용자 생각 말풍선 (예: "여기 어떤 곳이지?") */
+.busane-flow-step-thought-bubble {
+  margin: 14px 0 0;
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.5;
+  padding: 11px 14px;
+  border-radius: 14px 14px 14px 3px;
+  background: rgba(255, 255, 255, .92);
+  color: #2C2416;
+  /* 진한 흙색 */
+}
+
+/* 단계 카드 아래에 붙는 사용자 생각 말풍선 (예: "여기 어떤 곳이지?") */
+.wahi-flow-step-thought-bubble {
+  margin: 14px 0 0;
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.5;
+  padding: 11px 14px;
+  border-radius: 14px 14px 14px 3px;
+  background: rgba(255, 255, 255, .92);
+  color: #2C2416;
+  /* 진한 흙색 */
+}
+
+/* 단계 카드 사이를 연결하는 화살표(→) */
+.busane-flow-step-connector-arrow {
+  position: absolute;
+  top: 62px;
+  right: -15px;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 22px;
+  opacity: .6;
+  z-index: 2;
+}
+
+/* 단계 카드 사이를 연결하는 화살표(→) */
+.wahi-flow-step-connector-arrow {
+  position: absolute;
+  top: 62px;
+  right: -15px;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 22px;
+  opacity: .6;
+  z-index: 2;
+}
+
+/* 마지막 단계에는 화살표가 필요 없으므로 숨김 */
+.busane-flow-step-item:last-child .busane-flow-step-connector-arrow {
+  display: none;
+}
+
+.wahi-flow-step-connector-arrow {
+  display: none;
+}
+
+/* 마지막 단계에는 화살표가 필요 없으므로 숨김 */
+.wahi-flow-step-item:last-child .wahi-flow-step-connector-arrow {
+  display: none;
+}
+
+.wahi-flow-step-connector-arrow {
+  display: none;
+}
+
+/* 플로우 섹션 맨 아래 UX 의도 설명 문구 (이탤릭체) */
+.busane-flow-ux-intent-note {
+  margin: 40px auto 0;
+  max-width: 62ch;
+  text-align: center;
+  font-family: 'Pretendard', sans-serif;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.8;
+  opacity: .85;
+  padding: 18px 24px;
+  border-top: 1px solid rgba(255, 255, 255, .2);
+  border-bottom: 1px solid rgba(255, 255, 255, .2);
+}
+
+/* 플로우 섹션 맨 아래 UX 의도 설명 문구 (이탤릭체) */
+.wahi-flow-ux-intent-note {
+  margin: 40px auto 0;
+  max-width: 62ch;
+  text-align: center;
+  font-family: 'Pretendard', sans-serif;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.8;
+  opacity: .85;
+  padding: 18px 24px;
+  border-top: 1px solid rgba(255, 255, 255, .2);
+  border-bottom: 1px solid rgba(255, 255, 255, .2);
+}
+
+/* [QR 분기 트리 - 와히 전용] 위→아래로 가지가 뻗어나가는 트리 구조 전체 */
+.busane-qr-branch-tree {
+  margin: 54px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+}
+
+/* [QR 분기 트리 - 와히 전용] 위→아래로 가지가 뻗어나가는 트리 구조 전체 */
+.wahi-qr-branch-tree {
+  margin: 54px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+}
+
+/* 트리의 둥근 알약 모양 노드 (예: "📷 QR 스캔") */
+.busane-qr-tree-node {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 14px 26px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .22);
+}
+
+/* 트리의 둥근 알약 모양 노드 (예: "📷 QR 스캔") */
+.wahi-qr-tree-node {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 14px 26px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, .12);
+  border: 1px solid rgba(255, 255, 255, .22);
+}
+
+/* 노드들 사이를 연결하는 ↓ 화살표 */
+.busane-qr-tree-down-arrow {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 24px;
+  opacity: .5;
+}
+
+/* 노드들 사이를 연결하는 ↓ 화살표 */
+.wahi-qr-tree-down-arrow {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 24px;
+  opacity: .5;
+}
+
+/* 트리가 입문자/탐험가/경험자 3갈래로 갈라지는 영역 */
+.busane-qr-tree-branches-row {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* 트리가 입문자/탐험가/경험자 3갈래로 갈라지는 영역 */
+.wahi-qr-tree-branches-row {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* 분기 카드 하나 (입문자/탐험가/경험자) */
+.busane-qr-tree-branch-card {
+  flex: 1;
+  min-width: 200px;
+  max-width: 280px;
+  text-align: center;
+  background: rgba(255, 255, 255, .08);
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 18px;
+  padding: 26px 20px;
+}
+
+/* 분기 카드 하나 (입문자/탐험가/경험자) */
+.wahi-qr-tree-branch-card {
+  flex: 1;
+  min-width: 200px;
+  max-width: 280px;
+  text-align: center;
+  background: rgba(255, 255, 255, .08);
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 18px;
+  padding: 26px 20px;
+}
+
+/* 분기 카드의 레벨 이름 (예: "입문자") */
+.busane-qr-tree-branch-level-name {
+  font-family: 'Suit';
+  font-size: 22px;
+}
+
+/* 분기 카드의 레벨 이름 (예: "입문자") */
+.wahi-qr-tree-branch-level-name {
+  font-family: 'Suit';
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* 분기 카드의 질문 개수 설명 (예: "질문 3개 · 가볍게") */
+.busane-qr-tree-branch-question-count {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 13.5px;
+  opacity: .8;
+  margin-top: 8px;
+}
+
+/* 분기 카드의 질문 개수 설명 (예: "질문 3개 · 가볍게") */
+.wahi-qr-tree-branch-question-count {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 13.5px;
+  opacity: .8;
+  margin-top: 8px;
+}
+
+/* 분기 카드 안의 화면 미리보기 영역 (현재는 PATH 텍스트만 표시) */
+.busane-qr-tree-branch-screen-preview {
+  margin-top: 18px;
+  border-radius: 10px;
+  aspect-ratio: 9/16;
+  overflow: hidden;
+  background: rgba(255, 255, 255, .1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 분기 카드 안의 화면 미리보기 영역 (현재는 PATH 텍스트만 표시) */
+.wahi-qr-tree-branch-screen-preview {
+  margin-top: 18px;
+  border-radius: 10px;
+  aspect-ratio: 9/16;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #fff;
+}
+.qq{
+  border-radius: 15px;
+}
+
+/* 트리 맨 아래 최종 추천 결과 박스 (예: "맞춤 추천 — 당신에게는 이 커피가 맞아요") */
+.busane-qr-tree-result-box {
+  font-family: 'RomanticGumi', 'GoyangDeokyang', sans-serif;
+  font-size: clamp(20px, 2.4vw, 28px);
+  text-align: center;
+  background: rgba(255, 255, 255, .14);
+  padding: 22px 36px;
+  border-radius: 18px;
+}
+
+/* 트리 맨 아래 최종 추천 결과 박스 (예: "맞춤 추천 — 당신에게는 이 커피가 맞아요") */
+.wahi-qr-tree-result-box {
+  font-family: 'Suit';
+  font-size: clamp(15px, 2.4vw, 28px);
+  text-align: center;
+  background: rgba(255, 255, 255, .14);
+  padding: 22px 36px;
+  border-radius: 18px;
+}
+
+/* [모달 마무리 섹션] 부사네/와히 모달 맨 끝 - 로고+URL+버튼이 가운데 모여있는 섹션 */
+.case-study-closing-section {
+  text-align: center;
+  padding: 110px 30px;
+}
+/* ════════════════════════════════════════════════════════════════
+   11. 부사네 전용 스타일
+   이 구역 안의 클래스는 전부 busane- 로 시작하며, 부사네 모달에서만 사용합니다.
+   ════════════════════════════════════════════════════════════════ */
+
+/* [부사네 헤더] 모달 맨 처음 — 초록 배경에 로고+태그라인이 가운데 있는 큰 섹션 */
+.busane-header-section {
+  min-height: 78vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 30px;
+  background: #8acc7d;
+  /* 부사네 메인 그린 */
+  color: #fff;
+}
+
+/* 헤더 왼쪽 위에 붙는 "작업일지 No.01" 라벨 */
+.busane-worklog-label {
+  position: absolute;
+  top: 34px;
+  left: 34px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: 8px 15px;
+  border: 1.5px solid currentColor;
+  border-radius: 6px;
+  transform: rotate(-3deg);
+}
+
+/* 헤더 가운데 흰색 둥근 박스 안의 부사네 로고 */
+.busane-header-logo-box {
+  width: 150px;
+  height: 150px;
+  background: #fff;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-shadow: 0 24px 50px -20px rgba(0, 0, 0, .5);
+}
+
+.busane-header-logo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* 로고 아래 태그라인 ("오늘의 부산을 당신 곁에") */
+.busane-header-tagline {
+  font-family: 'RomanticGumi', 'GoyangDeokyang', sans-serif;
+  font-weight: 400;
+  font-size: clamp(26px, 3.4vw, 40px);
+  margin: 80px 0 0;
+}
+
+/* 헤더 우측 아래 갈매기 일러스트 위치 */
+.busane-header-seagull-icon {
+  position: absolute;
+  right: 40px;
+  bottom: 30px;
+  width: 80px;
+  opacity: .9;
+}
+
+/* [부사네 한 줄 소개] "부산의 소상공인과..." 큰 글씨가 들어가는 크림색 섹션 */
+.busane-intro-section {
+  text-align: center;
+  padding: 110px 30px;
+  background: #F5F0E8;
+  /* 부사네 크림 */
+  color: #2C2C2C;
+  /* 부사네 블랙 */
+}
+
+/* 한 줄 소개 큰 글씨 본문 */
+.busane-intro-big-text {
+  font-family: 'RomanticGumi', 'GoyangDeokyang', sans-serif;
+  font-weight: 400;
+  font-size: clamp(24px, 3.2vw, 40px);
+  line-height: 1.6;
+  max-width: 25ch;
+  margin: 0 auto;
+  letter-spacing: -.01em;
+}
+
+/* 한 줄 소개 글씨 중 "로컬 편집숍 플랫폼" 강조 부분 색 */
+.busane-intro-accent-text {
+  color: #8acc7d;
+}
+
+/* "카페", "베이커리" 같은 카테고리 태그들이 모이는 줄 */
+.busane-intro-category-tags-row {
+  margin: 34px 0 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: #8acc7d;
+}
+
+/* [부사네 전략 섹션] 흰 배경 - 포지셔닝맵+페르소나가 들어가는 영역 */
+.busane-strategy-section {
+  background: #fff;
+  color: #2C2C2C;
+  /* 부사네 블랙 */
+}
+
+/* 부사네 전략 섹션의 "Strategy · 전략 요약" 라벨 색 */
+.busane-strategy-label {
+  color: #6d6e71;
+
+}
+
+/* 전략 제목 글씨 안에서 "도시" 같은 강조 단어 색 */
+.busane-strategy-accent-word {
+  color: #00bdff;
+}
+
+/* 부사네 포지셔닝 맵의 배경/글자색 */
+.busane-positioning-map {
+  color: #2C2C2C;
+  /* 부사네 블랙 */
+  background: #F5F0E8;
+  /* 부사네 크림 */
+}
+
+/* 포지셔닝 맵 위 "부사네" 위치 점 — 좌표와 배경색 지정 */
+.busane-positioning-map-dot {
+  left: 18%;
+  top: 22%;
+  background: #00bdff
+;
+}
+
+/* "누가 부산을 찾을까?" 페르소나 영역 제목 아래쪽 여백 */
+.busane-persona-section-title {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+/* 부사네 페르소나 1번 카드("지은")의 아바타 배경색 */
+.busane-persona-avatar-1 {
+  background: #F5F0E8;
+  /* 부사네 크림 */
+  width: 84px;
+  height: 84px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 부사네 페르소나 2번 카드("수현")의 아바타 배경색 */
+.busane-persona-avatar-2 {
+  background: #E8D9C0;
+  /* 부사네 베이지 */
+  width: 84px;
+  height: 84px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* [부사네 VI 로고 섹션] 검정 배경에 큰 로고가 가운데 있는 섹션 */
+.busane-vi-logo-section {
+  background: #f5f3dc;
+  /* 부사네 블랙 */
+  color: #fff;
+  text-align: center;
+  padding: 96px 30px;
+  height: 800px;
+}
+
+/* "Visual Identity · 로고" 라벨을 가운데 정렬하기 위한 클래스 */
+.busane-vi-logo-label {
+  display: block;
+  text-align: center;
+}
+
+/* VI 섹션 가운데 큰 로고가 들어가는 흰색 둥근 박스 */
+.busane-vi-logo-big-box {
+  width: 170px;
+  height: 170px;
+  margin: 28px auto 0;
+  background: #fff;
+  border-radius: 34px;
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, .6);
+}
+
+.busane-vi-logo-big-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* 로고 아래 설명 문구 ("집 모양 안에 부산의 4대 심볼...") */
+.busane-vi-logo-description {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 18px;
+  margin: 70px 0 0;
+  opacity: .9;
+  color: #6d6e71;
+}
+
+
+/* 로고 설명 부분 */
+.text_photo{
+    margin: 50px auto;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+.text_photo li{
+    width: 300px;
+}
+.text_photo img{
+    width: 200px;
+    border-radius: 80px;
+}
+
+/* 추가 */
+.text_photo li {
+    position: relative;
+    overflow: hidden;
+}
+
+.text_photo li img {
+    display: block;
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.text_photo li .hover_img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.text_photo li:hover img:first-child {
+    opacity: 0;
+}
+
+.text_photo li:hover .hover_img {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.busane-vi-logo-chip-white-bg img,
+.busane-vi-logo-chip-dark-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* [부사네 컬러+타이포 섹션] 크림색 배경 영역 */
+.busane-color-typo-section {
+  background: #F5F0E8;
+  /* 부사네 크림 */
+  color: #2C2C2C;
+  /* 부사네 블랙 */
+}
+
+/* 컬러/타이포 라벨을 가운데 정렬하기 위한 클래스 */
+.busane-section-label-centered {
+  display: flex;
+  justify-content: center;
+}
+
+/* 타이포그래피 라벨 위쪽 여백 (컬러팔레트와의 간격) */
+.busane-typography-label-spacing {
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+}
+
+/* 부사네 컬러 팔레트 칩 4종 — 동백/바다/산(그린)/갈매기(회색) */
+.busane-color-chip-green {
+  height: 120px;
+  border-radius: 10px 10px 4px 30px;
+  box-shadow: 0 12px 22px -12px rgba(0, 0, 0, .4);
+  background: #8acc7d;
+  /* 산 — 메인 그린 */
+}
+
+.busane-color-chip-sea {
+  height: 120px;
+  border-radius: 10px 10px 4px 30px;
+  box-shadow: 0 12px 22px -12px rgba(0, 0, 0, .4);
+  background: #00bdff;
+  /* 바다 — 서브 블루 */
+}
+
+.busane-color-chip-camellia {
+  height: 120px;
+  border-radius: 10px 10px 4px 30px;
+  box-shadow: 0 12px 22px -12px rgba(0, 0, 0, .4);
+  background: #ff487c;
+  /* 동백 — 포인트 핑크 */
+}
+
+.busane-color-chip-gull {
+  height: 120px;
+  border-radius: 10px 10px 4px 30px;
+  box-shadow: 0 12px 22px -12px rgba(0, 0, 0, .4);
+  background: #6d6e71;
+  /* 갈매기 — 일반 회색 */
+}
+
+/* 부사네 타이포그래피 샘플 - RomanticGumi 폰트로 보여주는 글씨 */
+.busane-font-sample-romantic {
+  font-family: 'RomanticGumi';
+}
+
+/* 부사네 타이포그래피 샘플 - GoyangDeokyang 폰트로 보여주는 글씨 */
+.busane-font-sample-goyang {
+  font-family: 'GoyangDeokyang';
+}
+
+/* 부사네 타이포그래피 샘플 - Pretendard 폰트로 보여주는 글씨 */
+.busane-font-sample-pretendard {
+  font-family: 'Pretendard';
+  font-weight: 600;
+}
+
+/* [부사네 UI 화면설계 섹션] 흰 배경 - 브라우저/모바일 목업이 들어가는 영역 */
+.busane-ui-section {
+  background: #fff;
+  color: #2C2C2C;
+  /* 부사네 블랙 */
+}
+
+/* UI 섹션 제목 위쪽 여백 */
+.busane-ui-section-title-spacing {
+  margin-top: 10px;
+}
+
+/* 부사네 브라우저 목업 크기/위치 */
+.busane-browser-mockup-size {
+  margin-top: 30px;
+  max-width: 920px;
+}
+
+/* 부사네 서브페이지 썸네일 그리드의 가운데 정렬 폭 */
+.busane-subpage-grid-size {
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* [부사네 구매 플로우 섹션] 포레스트 그린 배경의 어두운 섹션 */
+.busane-flow-section {
+  background: #3D5A47;
+  /* 부사네 딥포레스트 */
+  color: #F5F0E8;
+  /* 부사네 크림 */
+}
+
+/* 플로우 섹션 라벨을 가운데 정렬하기 위한 클래스 */
+.busane-flow-label-centered {
+  display: flex;
+  justify-content: center;
+}
+
+/* 플로우 제목 안의 "부산의 이야기를 사는 경험" 강조 부분 색 (흰색) */
+.busane-flow-accent-text {
+  color: #fff;
+}
+
+/* [부사네 마무리 섹션] 초록 배경 - 로고+URL+버튼이 가운데 모인 곳 */
+.busane-closing-section {
+  background: #8acc7d;
+  /* 부사네 메인 그린 */
+  color: #fff;
+  text-align: center;
+  padding: 110px 30px;
+}
+
+/* 마무리 섹션의 작은 로고 박스 */
+.busane-closing-logo-box {
+  width: 120px;
+  height: 120px;
+  background: #fff;
+  border-radius: 26px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, .4);
+}
+
+.busane-closing-logo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* 마무리 섹션의 사이트 URL 글씨 */
+.busane-closing-url-text {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: .04em;
+  margin: 26px 30px;
+  opacity: .85;
+}
+
+/* "사이트 방문하기" 흰색 버튼 (부사네 전용) */
+.busane-visit-site-button {
+  background: #fff;
+  color: #00bdff;
+  /* 부사네 테라코타 */
+  box-shadow: none;
+}
+
+.busane-visit-site-button:hover {
+  background: #00bdff;
+  /* 진한 흙색 */
+  color: #fff;
+}
+
+/* "← 농장으로 돌아가기" 투명 테두리 버튼 (부사네 전용 — 흰 테두리) */
+.busane-back-to-farm-button {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, .5);
+  box-shadow: none;
+  transition: transform .25s cubic-bezier(0.22, 0.61, 0.36, 1), background .25s, box-shadow .25s, border-color .25s;
+}
+
+.busane-back-to-farm-button:hover {
+  background: rgba(255, 255, 255, .15);
+  border-color: #fff;
+  box-shadow: 0 14px 24px -10px rgba(0, 0, 0, .3);
+}
+/* ════════════════════════════════════════════════════════════════
+   12. 와히 전용 스타일
+   이 구역 안의 클래스는 전부 wahi- 로 시작하며, 와히 모달에서만 사용합니다.
+   ════════════════════════════════════════════════════════════════ */
+
+
+/* [와히 헤더] 모달 맨 처음 — 에스프레소 그라데이션 배경에 로고가 가운데 있는 섹션 */
+.wahi-header-section {
+  min-height: 78vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 30px;
+  background: radial-gradient(120% 90% at 50% 10%, #7c5032, #3B2314 60%);
+  /* 와히 밝은에스프레소 → 와히 에스프레소 그라데이션 */
+  color: #fff;
+}
+
+/* 헤더 왼쪽 위 "작업일지 No.02" 라벨 */
+.wahi-worklog-label {
+  position: absolute;
+  top: 34px;
+  left: 34px;
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: 8px 15px;
+  border: 1.5px solid currentColor;
+  border-radius: 6px;
+  transform: rotate(-3deg);
+}
+
+/* 헤더에 들어가는 큰 와히 워드마크 로고 크기 */
+.wahi-header-wordmark-box {
+  text-align: center;
+  font-size: clamp(30px, 11vw, 80px);
+  color: #fff;
+}
+.wahi_logo{
+  width: 250px;
+}
+
+/* "당신의 커피 취향이 시작되는 곳" 태그라인 (모든 와히 모달 안에서 공통으로 쓰는 폰트 스타일) */
+.wahi-tagline-text {
+  font-family: 'Suit';
+  font-weight: 400;
+  font-size: clamp(26px, 3.4vw, 40px);
+  margin: 36px 0 0;
+}
+/* 와히 워드마크 "wahi" 글자 공통 스타일 */
+.wahi-wordmark {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 100;
+  letter-spacing: .04em;
+  display: inline-flex;
+  align-items: flex-end;
+  line-height: 1;
+}
+
+/* "i" 글자를 감싸는 영역 — 위에 연기 SVG가 올라갈 기준점 */
+.wahi-wordmark-smoke-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+/* "i" 위에 떠 있는 연기 모양 곡선 SVG */
+.wahi-wordmark-smoke-curl {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 24px;
+}
+
+/* [와히 한 줄 소개] "커피가 어렵게 느껴지는..." 큰 글씨가 있는 크레마색 섹션 */
+.wahi-intro-section {
+  font-family: 'Suit';
+  text-align: center;
+  padding: 110px 30px;
+  background: #F5ECD7;
+  /* 와히 크레마 */
+  color: #191818;
+  /* 와히 블랙 */
+}
+
+/* 한 줄 소개 위쪽 커피잔 아이콘 영역 */
+.wahi-intro-coffee-icon-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+/* 한 줄 소개 큰 글씨 본문 */
+.wahi-intro-big-text {
+  font-family: 'Suit';
+  font-size: clamp(24px, 3.2vw, 40px);
+  line-height: 1.6;
+  max-width: 25ch;
+  margin: 0 auto;
+  letter-spacing: -.01em;
+}
+
+/* "스페셜티 커피 브랜드" 강조 부분 색 */
+.wahi-intro-accent-text {
+  color: #5A3A24;
+  /* 와히 밝은 에스프레소 */
+}
+
+/* "QR 하나로 나의 취향을 찾아드려요" 작은 부제 */
+.wahi-intro-sub-text {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 18px;
+  margin: 18px 0 0;
+  opacity: .8;
+}
+
+/* [와히 전략 섹션] 흰 배경 - 포지셔닝맵+페르소나가 들어가는 영역 */
+.wahi-strategy-section {
+  background: #fff;
+  color: #191818;
+  /* 와히 블랙 */
+}
+
+/* 와히 전략 섹션 라벨, 강조 단어 등에 공통으로 쓰는 색 (에스프레소 갈색) */
+.wahi-brand-accent-color {
+  color: #5A3A24;
+  /* 와히 밝은 에스프레소 */
+}
+
+/* "전문 용어 장벽" "선택지 과부하" 페인포인트 태그들이 모이는 줄 */
+.wahi-pain-point-tags-row {
+  display: flex;
+  gap: 10px;
+  margin: 18px 0 6px;
+  flex-wrap: wrap;
+}
+
+/* 페인포인트 태그 글자색 */
+.wahi-pain-point-tag {
+  color: #5A3A24;
+  /* 와히 밝은 에스프레소 */
+}
+/* 와히 페인포인트 태그 hover — 에스프레소 브라운으로 덮어쓰기 */
+.wahi-pain-point-tags-row .tag-outline:hover {
+  background-color: #3B2314;  /* 와히 에스프레소 브라운 */
+  color: #F5ECD7;              /* 와히 크레마 */
+  border-color: #3B2314;
+}
+
+/* 와히 포지셔닝 맵의 배경/글자색 + 위쪽 여백 */
+.wahi-positioning-map {
+  color: #191818;
+  /* 와히 블랙 */
+  background: #F5ECD7;
+  /* 와히 크레마 */
+  margin-top: 24px;
+}
+
+/* 포지셔닝 맵 위 "와히" 위치 점 — 좌표와 배경색 지정 */
+.wahi-positioning-map-dot {
+  left: 20%;
+  top: 22%;
+  background: #5A3A24;
+  /* 와히 밝은 에스프레소 */
+}
+
+/* "누가 커피를 어려워할까?" 페르소나 영역 제목 아래쪽 여백 */
+.wahi-persona-section-title {
+  margin-bottom: 20px;
+}
+
+/* 와히 페르소나 1번 카드("지수")의 아바타 배경색 */
+.wahi-persona-avatar-1 {
+  background: #F5ECD7;
+  /* 와히 크레마 */
+  width: 84px;
+  height: 84px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 와히 페르소나 2번 카드("민준")의 아바타 배경색 */
+.wahi-persona-avatar-2 {
+  background: #E8DBC0;
+  /* 살짝 어두운 베이지 (와히 페르소나 2번 전용) */
+  width: 84px;
+  height: 84px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* [와히 VI 로고 섹션] 검정 배경에 워드마크 로고 + i의 의미 설명이 있는 섹션 */
+.wahi-vi-logo-section {
+  background: #191818;
+  /* 와히 블랙 */
+  color: #fff;
+  text-align: center;
+  padding: 96px 30px;
+}
+
+/* VI 섹션 워드마크를 감싸는 영역 (가운데 정렬) */
+.wahi-vi-wordmark-wrap {
+  text-align: center;
+}
+.wahi_w{
+  margin: 0 auto;
+}
+
+/* VI 섹션에서 쓰는 중간 크기 워드마크 */
+.wahi-vi-wordmark-size {
+  font-size: clamp(54px, 9vw, 90px);
+  color: #fff;
+}
+
+/* "i = 피어오르는 연기..." 설명 문구 */
+.wahi-vi-description-text {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 18px;
+  max-width: 36ch;
+  margin: 30px auto 0;
+  opacity: .9;
+}
+
+/* 설명 문구 안에서 굵게 강조된 부분 색 */
+.wahi-vi-description-bold-part {
+  color: #F5ECD7;
+  /* 와히 크레마 */
+}
+
+/* 스케치→완성 과정 비교 영역의 정렬 (아래쪽 기준 정렬) */
+.wahi-sketch-process-row {
+  align-items: flex-end;
+}
+
+/* 스케치/완성 과정 칩 하나의 모양 (반투명 흰 박스) */
+.wahi-sketch-process-chip {
+  background: rgba(255, 255, 255, .06);
+  width: 120px;
+  height: 120px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+}
+
+/* 스케치 과정 마지막 단계에 들어가는 작은 워드마크 글씨 크기 */
+.wahi-sketch-final-wordmark {
+  font-size: 30px;
+  color: #fff;
+}
+
+/* 작은 워드마크 위 연기 curl 위치 조정 (다른 곳과 다르게 static 위치로) */
+.wahi-sketch-final-curl {
+  position: static;
+  transform: none;
+  width: 18px;
+  height: 26px;
+  margin-left: -2px;
+}
+
+/* [와히 컬러+타이포 섹션] 크레마색 배경 영역 */
+.wahi-color-typo-section {
+  background: #fff9ea;
+  /* 와히 크레마 */
+  color: #191818;
+  /* 와히 블랙 */
+}
+
+/* 컬러/타이포 라벨을 가운데 정렬하기 위한 클래스 */
+.wahi-section-label-centered {
+  display: flex;
+  justify-content: center;
+}
+
+/* 와히 컬러 팔레트 칩 4종 — 색상별로 구분 */
+.wahi-color-chip-white {
+  height: 120px;
+  border-radius: 10px 10px 4px 30px;
+  box-shadow: 0 12px 22px -12px rgba(0, 0, 0, .4);
+  background: #FFFFFF;
+  /* 와히 화이트 */
+  border: 1px solid #e6ddc8;
+}
+
+.wahi-color-chip-black {
+  height: 120px;
+  border-radius: 10px 10px 4px 30px;
+  box-shadow: 0 12px 22px -12px rgba(0, 0, 0, .4);
+  background: #191818;
+  /* 와히 블랙 */
+}
+
+.wahi-color-chip-espresso {
+  height: 120px;
+  border-radius: 10px 10px 4px 30px;
+  box-shadow: 0 12px 22px -12px rgba(0, 0, 0, .4);
+  background: #3B2314;
+  /* 와히 에스프레소 브라운 */
+}
+
+.wahi-color-chip-crema {
+  height: 120px;
+  border-radius: 10px 10px 4px 30px;
+  box-shadow: 0 12px 22px -12px rgba(0, 0, 0, .4);
+  background: #F5ECD7;
+  /* 와히 크레마 */
+  border: 1px solid #e6ddc8;
+}
+
+/* 타이포그래피 라벨 위쪽 여백 (컬러팔레트와의 간격) */
+.wahi-typography-label-spacing {
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+}
+
+/* 와히는 폰트 카드가 4개라서 2x2 그리드로 배치 + 가운데 정렬 폭 제한 */
+.wahi-typography-grid-2col {
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 와히 타이포그래피 샘플 - Pretendard ExtraLight (한글 디스플레이용) */
+.wahi-font-sample-korean-display {
+  font-family: 'Pretendard';
+  font-weight: 200;
+}
+
+/* 와히 타이포그래피 샘플 - Raleway Thin (영문 디스플레이용) */
+.wahi-font-sample-english-display {
+  font-family: 'Raleway';
+  font-weight: 100;
+  letter-spacing: .04em;
+}
+
+/* 와히 타이포그래피 샘플 - Pretendard Regular (한글 본문용) */
+.wahi-font-sample-korean-body {
+  font-family: 'Pretendard';
+  font-weight: 400;
+}
+
+/* 와히 타이포그래피 샘플 - Urbanist (영문 본문용) */
+.wahi-font-sample-english-body {
+  font-family: 'Urbanist';
+  font-weight: 400;
+}
+
+/* [와히 UI 화면설계 섹션] 흰 배경 - 브라우저/모바일 목업이 들어가는 영역 */
+.wahi-ui-section {
+  background: #fff;
+  color: #191818;
+  /* 와히 블랙 */
+}
+
+/* UI 섹션 제목 위쪽 여백 */
+.wahi-ui-section-title-spacing {
+  margin-top: 10px;
+}
+
+/* 와히 브라우저 목업 크기/위치 */
+.wahi-browser-mockup-size {
+  margin-top: 30px;
+  max-width: 920px;
+}
+
+/* 브라우저 안에 들어가는 가짜 화면 (실제 스크린샷 대신 그라데이션+로고로 표현) */
+.wahi-browser-fake-screen {
+  aspect-ratio: 16/9;
+  background: linear-gradient(160deg, #3B2314, #191818);
+  /* 와히 에스프레소 → 와히 블랙 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+/* 가짜 화면 안의 워드마크 크기 */
+.wahi-browser-fake-screen-wordmark {
+  font-size: 56px;
+  color: #fff;
+}
+
+/* 가짜 화면 안 워드마크의 연기 curl 크기 */
+.wahi-browser-fake-screen-curl {
+  width: 16px;
+  height: 22px;
+}
+
+/* 가짜 화면 안의 태그라인 글씨 */
+.wahi-browser-fake-screen-tagline {
+  font-family: 'RomanticGumi', 'GoyangDeokyang', sans-serif;
+  color: #F5ECD7;
+  /* 와히 크레마 */
+  font-size: 20px;
+}
+
+/* 와히 서브페이지 썸네일 그리드의 가운데 정렬 폭 */
+.wahi-subpage-grid-size {
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 서브페이지 썸네일 3개 각각의 가짜 배경색 + 공통 스타일 */
+.wahi-subpage-thumb-about {
+  height: 170px;
+  background: #3B2314;
+  /* 와히 에스프레소 브라운 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F5ECD7;
+  /* 와히 크레마 */
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: .16em;
+}
+
+.wahi-subpage-thumb-qr {
+  height: 170px;
+  background: #5A3A24;
+  /* 와히 밝은 에스프레소 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F5ECD7;
+  /* 와히 크레마 */
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: .16em;
+}
+
+.wahi-subpage-thumb-shop {
+  height: 170px;
+  background: #191818;
+  /* 와히 블랙 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F5ECD7;
+  /* 와히 크레마 */
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: .16em;
+}
+
+/* 모바일 목업 1번 - QR 스캔 화면 (에스프레소 배경) */
+.wahi-phone-screen-qr-scan {
+  width: 100%;
+  height: 100%;
+  background: #3B2314;
+  /* 와히 에스프레소 브라운 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #F5ECD7;
+  /* 와히 크레마 */
+}
+
+/* QR 스캔 화면 안의 "QR을 스캔하세요" 글씨 */
+.wahi-phone-screen-qr-scan-text {
+  font-family: 'RomanticGumi', 'GoyangDeokyang', sans-serif;
+  font-size: 15px;
+}
+
+/* 모바일 목업 2번 - 추천 결과 화면 (크레마 배경) */
+.wahi-phone-screen-result {
+  width: 100%;
+  height: 100%;
+  background: #F5ECD7;
+  /* 와히 크레마 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: #3B2314;
+  /* 와히 에스프레소 브라운 */
+  padding: 20px;
+  text-align: center;
+}
+
+/* 추천 결과 화면 안의 "당신에게는 이 커피가 맞아요" 글씨 */
+.wahi-phone-screen-result-text {
+  font-family: 'RomanticGumi', 'GoyangDeokyang', sans-serif;
+  font-size: 17px;
+}
+
+/* [와히 QR 플로우 섹션] 에스프레소 배경의 어두운 섹션 */
+.wahi-flow-section {
+  background: #3B2314;
+  /* 와히 에스프레소 브라운 */
+  color: #F5ECD7;
+  /* 와히 크레마 */
+}
+
+/* 플로우 섹션 라벨을 가운데 정렬하기 위한 클래스 */
+.wahi-flow-label-centered {
+  display: flex;
+  justify-content: center;
+}
+
+/* 플로우 제목 안의 "나만의 커피 취향 여정" 강조 부분 색 (흰색) */
+.wahi-flow-accent-text {
+  color: #fff;
+}
+
+/* QR 트리 안의 두번째 질문 노드("나의 커피 지식은?")는 배경이 살짝 더 밝음 */
+.wahi-tree-question-node {
+  background: rgba(255, 255, 255, .16);
+}
+
+/* [와히 마무리 섹션] 크레마 배경 - 로고+태그라인+버튼이 가운데 모인 곳 */
+.wahi-closing-section {
+  background: #F5ECD7;
+  /* 와히 크레마 */
+  color: #191818;
+  /* 와히 블랙 */
+  text-align: center;
+  padding: 110px 30px;
+}
+
+/* 마무리 섹션 로고 이미지를 감싸는 영역 (가운데 정렬) */
+.wahi-closing-logo-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+/* 마무리 섹션의 와히 로고 이미지 크기 */
+.wahi-closing-logo-image {
+  width: 200px;
+  height: auto;
+}
+
+/* 마무리 섹션 태그라인 ("당신의 첫 커피 취향, 와히에서") 글씨 스타일
+   !important를 쓴 이유: .wahi-tagline-text 공통 클래스의 큰 글씨 스타일을
+   이 마무리 섹션에서는 더 작고 다른 색으로 덮어써야 하기 때문입니다 */
+.wahi-closing-tagline-override {
+  font-family: 'Suit';
+  font-size: 22px !important;
+  margin-top: 18px !important;
+  color: #5A3A24 !important;
+  /* 와히 밝은 에스프레소 */
+  margin-bottom: 50px;
+}
+
+/* "사이트 방문하기" 진한 브라운 버튼 (와히 전용) */
+.wahi-visit-site-button {
+  background: #3B2314;
+  /* 와히 에스프레소 브라운 */
+  color: #fff;
+  box-shadow: 0 8px 18px -8px rgba(59, 35, 20, .6);
+}
+
+.wahi-visit-site-button:hover {
+  background: #191818;
+  /* 와히 블랙 */
+}
+
+/* "← 농장으로 돌아가기" 투명 테두리 버튼 (와히 전용 — 갈색 테두리) */
+.wahi-back-to-farm-button {
+  background: transparent;
+  color: #191818;
+  /* 와히 블랙 */
+  border: 1.5px solid #5A3A24;
+  /* 와히 밝은 에스프레소 */
+  box-shadow: none;
+  transition: transform .25s cubic-bezier(0.22, 0.61, 0.36, 1), background .25s, box-shadow .25s, border-color .25s;
+}
+
+.wahi-back-to-farm-button:hover {
+  background: #3B2314;
+  /* 와히 에스프레소 브라운 */
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 14px 24px -10px rgba(59, 35, 20, .5);
+}
+/* ════════════════════════════════════════════════════════════════
+   13. 수확물 (S6) — 실무 작업 포트폴리오 카드 섹션
+   ════════════════════════════════════════════════════════════════ */
+
+/* "전체/상세페이지/카드뉴스/배너" 필터 탭 버튼들이 모이는 줄
+   — SNS 섹션의 콘텐츠 타입 필터 탭(.sns-filter-tabs-row)도 같은 톤을 공유합니다 */
+.work-filter-tabs-row,
+.sns-filter-tabs-row {
+  margin: 30px 0 44px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* 필터 탭 버튼 하나의 기본 모양 */
+.work-filter-tabs-row button,
+.sns-filter-tabs-row button {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #4A3F2D;
+  /* 중간 흙색 */
+  background: transparent;
+  border: 1.5px solid #E0D6C4;
+  /* 라인색 */
+  border-radius: 99px;
+  padding: 9px 20px;
+  cursor: pointer;
+  transition: all .25s;
+}
+
+/* 선택된 탭(.active-tab) 또는 마우스를 올린 탭의 색 */
+.work-filter-tabs-row button.active-tab,
+.work-filter-tabs-row button:hover,
+.sns-filter-tabs-row button.active-tab,
+.sns-filter-tabs-row button:hover {
+  background: #5C6B3A;
+  /* 이끼색 */
+  color: #fff;
+  border-color: #5C6B3A;
+  /* 이끼색 */
+}
+
+/*  농장에서 직접 거둔 것들 - 밀 */
+.grow{
+  display: flex;
+}
+.grow img{
+  margin-left: 20px;
+}
+
+
+/* 작업물 카드들을 3열 그리드로 배치 */
+.work-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* 작업물 카드 한 장 */
+.work-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 14px 30px -18px rgba(44, 36, 22, .3);
+  border: 1px solid #E0D6C4;
+  /* 라인색 */
+  transition: transform .3s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow .3s;
+}
+
+/* 카드에 마우스를 올리면 위로 살짝 떠오름 */
+.work-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 44px -20px rgba(44, 36, 22, .4);
+}
+
+/* 카드 위쪽 썸네일 영역 (현재는 "Coming Soon" 텍스트만 표시) */
+.work-card-thumbnail {
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  letter-spacing: .16em;
+  color: rgba(255, 255, 255, .9);
+  text-transform: uppercase;
+  object-fit: cover;
+}
+
+/* 썸네일 배경색 3종 — 작업물 출처 브랜드에 따라 다른 색 사용 */
+.work-card-thumbnail-busane-green {
+  background: #8acc7d;
+  /* 부사네 메인 그린 */
+}
+
+.work-card-thumbnail-busane-forest {
+  background: #3D5A47;
+  /* 부사네 딥포레스트 */
+}
+
+.work-card-thumbnail-wahi-espresso {
+  background: #3B2314;
+  /* 와히 에스프레소 브라운 */
+}
+
+.work-card-thumbnail-wahi-black {
+  background: #252110;
+  /* 와히 블랙 */
+}
+
+.work-card-thumbnail-adidas-mono {
+  background: #1A1A1A;
+  /* 아디다스 상세페이지 — 클린/미니멀 모노톤 */
+}
+
+.work-card-thumbnail-detail-neutral {
+  background: #9C958A;
+  /* 상세페이지 카테고리 일반 플레이스홀더 — 뉴트럴 타우프 */
+}
+
+/* 카드 아래쪽 정보 영역(라벨+제목+사용툴)을 감싸는 박스 */
+.work-card-info-area {
+  padding: 20px 22px 24px;
+}
+
+/* 카드 카테고리 라벨 (예: "상세페이지 · 부사네") */
+.work-card-category-label {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #5C6B3A;
+  /* 이끼색 */
+}
+
+/* 카드 작업명 제목 (예: "카페지도 페이지") */
+.work-card-title {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 20px;
+  color: #2C2416;
+  /* 진한 흙색 */
+  margin: 8px 0 0;
+}
+
+/* 카드 사용 툴 정보 (예: "Figma · HTML/CSS") */
+.work-card-tools-used {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 13px;
+  color: #8A7B62;
+  /* 흐린 흙색 */
+  margin: 12px 0 0;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   S7. 작업 일지 — 클릭하면 뒤집히는 카드 섹션
+   ════════════════════════════════════════════════════════════════ */
+.worklog-section {
+  background: #D4C4A8;
+}
+
+.worklog-cards-grid {
+  margin: 50px 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.worklog-flip-card {
+  perspective: 1200px;
+  aspect-ratio: 4/3;
+  cursor: pointer;
+}
+
+.worklog-flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-style: preserve-3d;
+}
+
+.worklog-flip-card.flipped .worklog-flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.worklog-card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  box-shadow: 0 14px 30px -18px rgba(44, 36, 22, .35);
+}
+
+.worklog-card-front {
+  background: #fff;
+  justify-content: space-between;
+}
+
+.worklog-card-back {
+  background: #5C6B3A;
+  color: #fff;
+  transform: rotateY(180deg);
+  justify-content: center;
+}
+
+.worklog-card-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.worklog-card-emoji {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.worklog-card-date {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: .06em;
+  color: #8A7B62;
+}
+
+.worklog-card-summary {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 17px;
+  line-height: 1.5;
+  color: #2C2416;
+}
+
+.worklog-card-hint {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #5C6B3A;
+  opacity: .7;
+  margin-top: 8px;
+}
+
+.worklog-card-back-label {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .7);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.worklog-card-back-text {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.worklog-card-back-hint {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 10.5px;
+  letter-spacing: .06em;
+  color: rgba(255, 255, 255, .55);
+  text-align: center;
+  margin-top: 14px;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   15. Contact (S8) — 연락처 섹션
+   ════════════════════════════════════════════════════════════════ */
+
+/* Contact 섹션 전체를 가운데 정렬 */
+.contact-section {
+  text-align: center;
+}
+
+/* 맨 위 씨앗 아이콘 — 위아래로 둥둥 떠다니는 효과 */
+.contact-seed-icon {
+  margin: 0 auto;
+  animation: float-up-down 5s ease-in-out infinite;
+  transform-origin: bottom;
+}
+
+/* "같이 키워볼까요?" 제목 */
+.contact-section-title {
+  font-family: 'RomanticGumi', 'GoyangDeokyang', sans-serif;
+  font-weight: 400;
+  font-size: clamp(30px, 4vw, 48px);
+  color: #2C2416;
+  /* 진한 흙색 */
+  margin: 26px 0 0;
+}
+
+/* 제목 아래 설명 문구 */
+.contact-section-body-text {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 18px;
+  line-height: 1.9;
+  color: #4A3F2D;
+  /* 중간 흙색 */
+  margin: 20px 0 0;
+}
+
+/* 설명 문구와 연락처 목록 사이의 점선 구분선 */
+.contact-dashed-divider {
+  width: 60px;
+  height: 2px;
+  margin: 36px auto;
+  background: repeating-linear-gradient(90deg, #D4C4A8 0 8px, transparent 8px 14px);
+  /* 모래색 점선 */
+}
+
+/* 이메일/깃허브/인스타 링크들을 세로로 쌓는 목록 */
+.contact-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  margin: 0 0 36px;
+}
+
+/* 연락처 링크 하나 (아이콘+텍스트) */
+.contact-links-list a {
+  font-family: 'Urbanist', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #4A3F2D;
+  /* 중간 흙색 */
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  transition: color .3s;
+}
+
+.contact-links-list a:hover {
+  color: #5C6B3A;
+  /* 이끼색 */
+}
+
+/* 연락처 링크 앞에 붙는 아이콘 크기/색 */
+.contact-link-icon {
+  width: 20px;
+  height: 20px;
+  color: #5C6B3A;
+  /* 이끼색 */
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   16. Footer — 맨 아래 푸터
+   ════════════════════════════════════════════════════════════════ */
+
+/* 푸터 전체 배경 (진한 흙색) */
+.site-footer {
+  background: #2C2416;
+  /* 진한 흙색 */
+  color: #e8dfce;
+  padding: 54px 0 40px;
+  text-align: center;
+}
+
+/* 푸터 안의 "여울 농장 · Yeowol Farm" 로고 텍스트 */
+.site-footer-logo-text {
+  font-family: 'GoyangDeokyang', sans-serif;
+  font-size: 25px;
+  color: #fff;
+}
+
+/* 푸터 안의 인사 문구 */
+.site-footer-greeting-line {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 15px;
+  color: #A9B583;
+  /* 연한 이끼색 */
+  margin: 12px 0 0;
+}
+
+/* 푸터 맨 아래 저작권 표기 */
+.site-footer-copyright-text {
+  font-family: 'Urbanist', sans-serif;
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(232, 223, 206, .5);
+  margin: 24px 0 0;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   17. 반응형 — 화면 크기에 따라 레이아웃을 바꾸는 부분
+   980px 이하: 태블릿 / 620px 이하: 모바일
+   ════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 980px) {
+
+  /* 화면이 좁아지면 좌우 여백을 좀 더 줄임 */
+  .content-wrap,
+  .content-wrap-wide {
+    padding: 0 26px;
+  }
+
+  /* 섹션 위아래 여백도 좁은 화면에서는 줄임 */
+  .section-padding {
+    padding: 88px 0;
+  }
+
+  /* About 좌우 2단 그리드 → 1단으로 변경 (위아래로 쌓임) */
+  .about-two-column-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .about-illustration-frame {
+    max-width: 420px;
+  }
+
+  /* 전략 섹션 2단 그리드 → 1단으로 변경 */
+  .busane-case-study-strategy-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+/* 전략 섹션 2단 그리드 → 1단으로 변경 */
+  .wahi-case-study-strategy-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  /* 타이포그래피 3열 그리드 → 1열로 변경 */
+  .busane-typography-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+/* 타이포그래피 3열 그리드 → 1열로 변경 */
+  .wahi-typography-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 수확물 3열 카드 → 2열로 변경 */
+  .work-cards-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* 인스타그램 6열 → 3열로 변경 */
+  .instagram-feed-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* 화면이 좁아지면 오른쪽 메뉴는 숨김 (모바일 메뉴는 별도 구현 필요) */
+  .nav-menu-list {
+    display: none;
+  }
+
+  /* 플로우 단계가 가로 한 줄에 안 들어가므로 세로로 쌓음 */
+  .busane-flow-steps-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+/* 플로우 단계가 가로 한 줄에 안 들어가므로 세로로 쌓음 */
+  .wahi-flow-steps-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .busane-flow-step-item {
+    max-width: 300px;
+    width: 100%;
+  }
+
+.wahi-flow-step-item {
+    max-width: 300px;
+    width: 100%;
+  }
+
+  /* 세로로 쌓이면 화살표 방향이 안 맞으므로 숨김 */
+  .busane-flow-step-connector-arrow {
+    display: none;
+  }
+
+/* 세로로 쌓이면 화살표 방향이 안 맞으므로 숨김 */
+  .wahi-flow-step-connector-arrow {
+    display: none;
+  }
+
+  /* 서브페이지 썸네일 3열 → 1열로 변경 */
+  .busane-subpage-thumbnails-grid {
+    grid-template-columns: 1fr;
+  }
+
+/* 서브페이지 썸네일 3열 → 1열로 변경 */
+  .wahi-subpage-thumbnails-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 폴라로이드 사진 위치를 모바일에 맞게 재조정 (아래쪽 중앙으로) */
+  .about-polaroid-sticker {
+    left: 80%;
+    top: auto;
+    bottom: -20px;
+    transform: translate(-50%, 0) rotate(4deg);
+  }
+}
+
+@media (max-width: 620px) {
+
+  /* 수확물 카드 2열 → 1열로 변경 */
+  .work-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 인스타그램 3열 → 2열로 변경 */
+  .instagram-feed-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 폴더 카드 너비를 화면에 맞게 축소 */
+  .folder-card {
+    width: 300px;
+  }
+
+  /* VI 로고 비교(흰배경/검배경)가 가로로 안 들어가므로 세로로 쌓음 */
+  .busane-vi-logo-comparison-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+/* VI 로고 비교(흰배경/검배경)가 가로로 안 들어가므로 세로로 쌓음 */
+  .wahi-vi-logo-comparison-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* 히어로의 꽃 로고 SVG 크기를 작은 화면에 맞게 축소 */
+  .hero-flower-stage-wrap {
+    width: 90px;
+    height: 120px;
+  }
+}
+
+/* 인쇄(프린트)할 때 적용되는 스타일 — 불필요한 요소 숨기고 여백 줄임 */
+@media print {
+  @page {
+    margin: 12mm;
+  }
+
+  /* 인쇄할 때는 메뉴바, 스크롤 힌트, 메모, 필터탭은 보일 필요 없음 */
+  .nav-bar,
+  .hero-scroll-hint,
+  .placeholder-note,
+  .work-filter-tabs-row,
+  .sns-filter-tabs-row {
+    display: none !important;
+  }
+
+  /* 애니메이션 없이 바로 다 보이게 함 */
+  .rise {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* 큰 섹션들의 위아래 여백을 인쇄용으로 줄임 */
+  .section-padding,
+  .wahi-header-section,
+  .busane-header-section,
+  .flow-section-padding,
+  .case-study-closing-section {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  /* 배경색이 인쇄 시에도 그대로 나오도록 강제 설정 */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+
+/* ================================================================
+   S8. SNS 섹션 — 부사네 인스타그램 브랜드 콘텐츠
+   ================================================================ */
+
+/* 섹션 배경 — 모래색 */
+.sns-section {
+  background: #fff7ea;
+}
+
+/* 계정 프로필 줄 */
+.sns-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 32px 0 40px;
+  padding: 20px 24px;
+  background: rgba(255, 255, 255, .7);
+  border-radius: 14px;
+  border: 1px solid #E0D6C4;
+}
+
+/* 프로필 아바타 */
+.sns-profile-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex: none;
+}
+
+/* 계정 핸들 */
+.sns-profile-handle {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #2C2416;
+}
+
+/* 계정 설명 */
+.sns-profile-desc {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 13.5px;
+  color: #4A3F2D;
+  margin-top: 3px;
+}
+
+/* 팔로우 버튼 — 오른쪽 끝 */
+.sns-follow-button {
+  margin-left: auto;
+  flex: none;
+  font-size: 14px;
+  padding: 10px 22px;
+}
+
+/* 게시물 카드 3열 그리드 */
+.sns-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* 게시물 카드 */
+.sns-card {
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 20px -10px rgba(44, 36, 22, .25);
+  border: 1px solid #E0D6C4;
+  transition: transform .3s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow .3s;
+}
+
+.sns-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 34px -14px rgba(44, 36, 22, .35);
+}
+
+/* 썸네일 영역 — 1:1 비율 */
+.sns-card-thumb {
+  position: relative;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+}
+
+/* 썸네일 실제 이미지 */
+.sns-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.sns-card:hover .sns-card-thumb img {
+  transform: scale(1.04);
+}
+
+/* 이미지 없을 때 컬러 플레이스홀더 */
+.sns-card-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.sns-card-thumb-emoji {
+  font-size: 36px;
+}
+
+/* "카드뉴스" / "숏폼" 배지 */
+.sns-card-type-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  color: #fff;
+  background: rgba(44, 36, 22, .55);
+  padding: 4px 9px;
+  border-radius: 99px;
+}
+
+/* 호버 오버레이 */
+.sns-card-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(44, 36, 22, .3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.sns-card:hover .sns-card-hover-overlay {
+  opacity: 1;
+}
+
+.sns-card-hover-icon {
+  font-size: 32px;
+  color: #fff;
+}
+
+/* 카드 하단 캡션 */
+.sns-card-caption {
+  padding: 12px 14px;
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #4A3F2D;
+}
+
+/* SNS 임베드 모달 */
+.sns-embed-modal {
+  z-index: 250;
+}
+
+.sns-embed-box {
+  position: relative;
+  max-width: 600px;
+  margin: 60px auto;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .5);
+  min-height: 300px;
+}
+
+.sns-embed-inner {
+  padding: 20px;
+}
+
+/* 반응형 */
+@media (max-width: 980px) {
+  .sns-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .sns-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .sns-profile {
+    flex-wrap: wrap;
+  }
+  .sns-follow-button {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   히어로 영상 팝업
+   ════════════════════════════════════════════════════════════════ */
+
+/* 팝업 배경 오버레이 */
+.video-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  background: #b19564;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: videoPopupFadeIn .5s .3s forwards;
+}
+
+@keyframes videoPopupFadeIn {
+  to { opacity: 1; }
+}
+
+/* 팝업이 닫힐 때 */
+.video-popup-overlay.closing {
+  animation: videoPopupFadeOut .4s forwards;
+}
+
+@keyframes videoPopupFadeOut {
+  to { opacity: 0; pointer-events: none; }
+}
+
+/* 팝업 콘텐츠 박스 */
+.video-popup-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1100px;
+  transform: translateY(30px);
+  animation: videoPopupSlideUp .55s .35s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes videoPopupSlideUp {
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* 영상 플레이어 영역 */
+.video-popup-player {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #1a1208;
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .8);
+  cursor: pointer;
+}
+
+/* 영상 자체 */
+.video-popup-video {
+  width: 100%;
+  display: block;
+  border-radius: 16px;
+}
+
+/* 재생 버튼 (영상 재생 전에만 보임) */
+.video-popup-play-btn {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(44, 36, 22, .35);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .3s;
+}
+
+.video-popup-play-btn:hover {
+  background: rgba(44, 36, 22, .5);
+}
+
+/* 재생 버튼 안 동그란 원 */
+.video-popup-play-btn::before {
+  content: "";
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .15);
+  border: 2px solid rgba(255, 255, 255, .6);
+  backdrop-filter: blur(6px);
+}
+
+/* 재생 버튼 SVG (삼각형) */
+.video-popup-play-btn svg {
+  position: relative;
+  z-index: 1;
+  margin-left: 4px; /* 삼각형 시각적 가운데 보정 */
+}
+
+/* 재생 중에는 재생 버튼 숨김 */
+.video-popup-play-btn.hidden {
+  display: none;
+}
+
+/* 건너뛰기 버튼 */
+.video-popup-skip-btn {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: .04em;
+  color: rgba(255, 255, 255, .7);
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, .3);
+  border-radius: 99px;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: color .3s, border-color .3s, background .3s;
+  margin-top: 20px;
+}
+
+.video-popup-skip-btn:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, .7);
+  background: rgba(255, 255, 255, .08);
+}
+
+/* 모바일 대응 */
+@media (max-width: 620px) {
+  .video-popup-box {
+    width: 95%;
+    gap: 14px;
+  }
+
+  .video-popup-play-btn::before {
+    width: 56px;
+    height: 56px;
+  }
+}
