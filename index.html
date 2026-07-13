@@ -11,9 +11,32 @@
   <!-- 파비콘 연결하기 -->
   <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon.png">
 
+  <!-- Matter.js — 로딩 화면 물리 엔진 (head에서 먼저 로드) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+  <!-- StPageFlip — 다이어리 히어로 실제 종이 넘김 효과 (부사네 이북과 동일 라이브러리, 로컬 파일로 포함해 CDN 의존 없음) -->
+  <script src="./js/page-flip.browser.js"></script>
 </head>
 
 <body>
+
+  <!-- ════════════════════════════════════════════════════════════
+       로딩 오버레이 — 농작물 물리 낙하 화면
+       Matter.js 물리 엔진으로 농작물이 바닥에 쌓입니다.
+       4초 후 자동으로 사라집니다.
+       ════════════════════════════════════════════════════════════ -->
+  <div id="loading-overlay">
+    <canvas id="loading-canvas"></canvas>
+    <button id="loading-skip">건너뛰기 →</button>
+    <div id="loading-center">
+      <div id="loading-logo">여울 농장</div>
+      <div id="loading-text">
+        loading<span class="ldot">.</span><span class="ldot">.</span><span class="ldot">.</span>
+      </div>
+      <div id="loading-bar-wrap">
+        <div id="loading-bar"></div>
+      </div>
+    </div>
+  </div>
 
 
   <!-- ════════════════════════════════════════════════════════════
@@ -72,44 +95,109 @@
 
 
   <!-- ════════════════════════════════════════════════════════════
-       S1. 히어로 — 페이지 맨 처음 화면
-       화면 전체 높이를 채우고, 가운데에 꽃 성장 로고와 큰 제목이 있습니다.
-       스크롤을 내리면 JS가 씨앗→새싹→봉오리→개화→만개 단계를 바꿔줍니다.
+       S1. 히어로 — 다이어리 플립북 (StPageFlip — 부사네 이북과 동일 라이브러리)
+       표지 클릭 → 낱장 8개를 실제 종이 넘기는 곡선 효과로 넘기기 → 포트폴리오
        ════════════════════════════════════════════════════════════ -->
-  <section class="hero-section grain">
 
-    <!-- ── 히어로 영상 래퍼 ──
-         폴더 이미지 안에 영상이 끼워진 것처럼 보이도록
-         position: absolute 로 위치를 잡습니다.
-         재생 버튼 클릭 → 소리 포함 재생 (브라우저 자동재생 정책 대응)
-    -->
-    <div class="video">
+  <!-- 히어로 다이어리 전체 화면 -->
+  <div id="diary-hero">
 
-      <!-- 영상 요소 — autoplay/muted 없이 클릭 재생 방식 -->
-      <video class="hero" id="heroVideo" src="./img/hero.mp4" playsinline preload="metadata"></video>
-
-      <!-- 재생 버튼 오버레이 — 클릭 시 소리 포함 재생 -->
-      <button class="hero-play-btn" id="heroPlayBtn" aria-label="영상 재생">
-        <span class="hero-play-btn-circle">
-          <svg width="22" height="26" viewBox="0 0 22 26" fill="none">
-            <polygon points="2,1 21,13 2,25" fill="#fff"/>
-          </svg>
-        </span>
-        <span class="hero-play-btn-label">재생</span>
-      </button>
-
+    <!-- ── 표지 화면 ── -->
+    <div id="diary-cover">
+      <div class="diary-cover-book" id="diaryCoverBook">
+        <div class="diary-cover-spine"></div>
+        <div class="diary-cover-illust">🌱</div>
+        <div class="diary-cover-title">여울 농장<br>작업일지</div>
+        <div class="diary-cover-year">2 0 2 6</div>
+        <div class="diary-cover-hint">클릭해서 열기</div>
+      </div>
     </div>
 
-    <!-- 메인 타이틀 -->
-     <div class="main_tt">
-      <h1 class="hero-main-title rise delay-1">여울 농장</h1>
-    <div class="hero-english-name rise delay-1">Yeowol Farm</div>
-    <p class="hero-tagline rise delay-2">디자인으로 브랜드를 키웁니다</p>
-    <div class="hero-scroll-hint rise delay-3">↓ 농장 둘러보기<span class="hero-scroll-hint-arrow">⌄</span></div>
-     </div>
-    
+    <!-- ── 열린 책 (StPageFlip) ── -->
+    <div id="diary-book-screen">
 
-  </section>
+      <div class="diary-book-stage">
+        <div id="diaryBook" class="diary-book">
+
+
+          <!-- p1: 첫 날 -->
+          <div class="diary-page diary-page-text" data-density="soft">
+            <div class="dp-text-header">— 첫 번째 기록</div>
+            <div class="dp-text-body"><img src="./img/dd/d1.png" alt=""></div>
+            <div class="dp-corner">🌱</div>
+            <div class="dp-num dp-num-r">1</div>
+          </div>
+
+          <!-- p1: 코딩 처음 배운 날 -->
+          <div class="diary-page diary-page-text" data-density="soft">
+            <div class="dp-text-header">— 두 번째 기록</div>
+            <div class="dp-text-body"><img src="./img/dd/d2.png" alt=""></div>
+            <div class="dp-corner">🌱</div>
+            <div class="dp-num dp-num-r">2</div>
+          </div>
+
+          <!-- p2: 씨앗 일기 -->
+          <div class="diary-page diary-page-text" data-density="soft">
+            <div class="dp-text-header">— 세 번째 기록</div>
+            <div class="dp-text-body"><img src="./img/dd/d3.png" alt=""></div>
+            <div class="dp-corner">🌱</div>
+            <div class="dp-num dp-num-r">2</div>
+          </div>
+
+          <!-- p3: 새싹 일기 -->
+          <div class="diary-page diary-page-text" data-density="soft">
+            <div class="dp-text-header">— 네 번째 기록</div>
+            <div class="dp-text-body"><img src="./img/dd/d4.png" alt=""></div>
+            <div class="dp-corner">🌿</div>
+            <div class="dp-num dp-num-r">4</div>
+          </div>
+
+          <!-- p4: 물주기 일기 -->
+          <div class="diary-page diary-page-text" data-density="soft">
+            <div class="dp-text-header">— 다섯 번째 기록</div>
+            <div class="dp-text-body"><img src="./img/dd/d5.png" alt=""></div>
+            <div class="dp-corner">🪴</div>
+            <div class="dp-num dp-num-r">6</div>
+          </div>
+
+          <!-- p4: 물주기 일기 -->
+          <div class="diary-page diary-page-text" data-density="soft">
+            <div class="dp-text-header">— 여섯 번째 기록</div>
+            <div class="dp-text-body"><img src="./img/dd/d6.png" alt=""></div>
+            <div class="dp-corner">🪴</div>
+            <div class="dp-num dp-num-r">6</div>
+          </div>
+
+          <!-- p6: 환영 왼쪽 -->
+          <div class="diary-page diary-page-welcome-l" data-density="soft">
+            <!-- ★ 배경 이미지 교체: <img src="./img/welcome-bg.png" class="dp-welcome-bg"> -->
+            <div class="dp-welcome-flower">🌻</div>
+            <div class="dp-welcome-sub"><img src="./img/dd/dd.PNG" alt=""></div>
+          </div>
+
+          <!-- p7: 환영 오른쪽 -->
+          <div class="diary-page diary-page-welcome-r" data-density="soft">
+            <div class="dp-welcome-title">여울 농장에<br>오신 것을<br>환영합니다</div>
+            <button class="dp-enter-btn" id="diaryEnterBtn">농장 둘러보기 →</button>
+          </div>
+
+        </div><!-- /#diaryBook -->
+      </div><!-- /.diary-book-stage -->
+
+      <!-- 앞/뒤 도트 네비게이션 -->
+      <div class="diary-nav-row">
+        <button class="diary-nav-btn" id="diaryPrevBtn" disabled>←</button>
+        <div class="diary-nav-dots">
+          <div class="diary-dot on" id="dd0"></div>
+          <div class="diary-dot" id="dd1"></div>
+          <div class="diary-dot" id="dd2"></div>
+          <div class="diary-dot" id="dd3"></div>
+        </div>
+        <button class="diary-nav-btn" id="diaryNextBtn">→</button>
+      </div>
+
+    </div><!-- /#diary-book-screen -->
+  </div><!-- /#diary-hero -->
 
 
   <!-- ════════════════════════════════════════════════════════════
@@ -184,22 +272,22 @@
             <div class="timeline-item">
               <div class="timeline-year">2026</div>
               <div class="timeline-role">
-                <strong>Portfolio Renewal</strong>
-                <span>브랜딩 중심 원페이지 포트폴리오 리빌드</span>
+                <strong>나래디자인학원</strong>
+                <span>포트폴리오 제작</span>
               </div>
             </div>
             <div class="timeline-item">
-              <div class="timeline-year">2024–</div>
+              <div class="timeline-year">2025–</div>
               <div class="timeline-role">
-                <strong>Digital / AI Workflow</strong>
-                <span>AI 이미지·영상 활용한 실무형 비주얼 제작 프로세스 확장</span>
+                <strong>세컨드필드</strong>
+                <span>쇼핑몰 CS 및 배송 담당</span>
               </div>
             </div>
             <div class="timeline-item">
               <div class="timeline-year">Career</div>
               <div class="timeline-role">
                 <strong>Branding / Design / Education</strong>
-                <span>브랜드 기획, 시각디자인, 콘텐츠 제작, 웹 기획·프론트엔드 연계</span>
+                <span>브랜드 기획, 시각디자인, 콘텐츠 제작, 웹 기획·프론트엔드</span>
               </div>
             </div>
           </div>
@@ -1178,6 +1266,7 @@
           <div class="sns-card-caption">신규입고 - 사랑하는, 부산의 순간</div>
         </div>
 
+        <!-- 끼룩 -->
         <div class="sns-card" data-category="card"
           data-embed-url="https://www.instagram.com/p/DaURcAWE6VW/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==">
           <div class="sns-card-thumb">
@@ -1190,15 +1279,28 @@
           <div class="sns-card-caption">협업 브랜드 - 광안리 문구점 끼룩</div>
         </div>
 
-        <div class="sns-card" data-category="shorts" data-embed-url="REPLACE_URL">
+        <!-- 부산 소식 - 야구장 -->
+        <div class="sns-card" data-category="card"
+          data-embed-url="https://www.instagram.com/p/DaURcAWE6VW/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==">
           <div class="sns-card-thumb">
             <div class="sns-card-thumb-placeholder">
-              <img src="" alt="">
+              <img src="./img/인스타그램/busan.jpg" alt="ig">
+              <span class="sns-card-type-badge">카드뉴스</span>
+            </div>
+            <div class="sns-card-hover-overlay"><span class="sns-card-hover-icon">▶</span></div>
+          </div>
+          <div class="sns-card-caption">부산소식 - 부산 야구장 재개발 상황</div>
+        </div>
+
+        <div class="sns-card" data-category="shorts" data-embed-url="https://www.instagram.com/reel/DasxCAazsnC/?igsh=Z3NrZ2duZDBsaWlk">
+          <div class="sns-card-thumb">
+            <div class="sns-card-thumb-placeholder">
+              <img src="./img/reee.png" alt="re">
               <span class="sns-card-type-badge">숏폼</span>
             </div>
             <div class="sns-card-hover-overlay"><span class="sns-card-hover-icon">▶</span></div>
           </div>
-          <div class="sns-card-caption">이 주의 추천 — 부산 감성 담긴 제품 5</div>
+          <div class="sns-card-caption">부사네를 소개합니다.</div>
         </div>
 
         <div class="sns-card" data-category="card" data-embed-url="REPLACE_URL">
@@ -1255,8 +1357,8 @@
      ════════════════════════════════════════════════════════════ -->
   <section class="section-padding worklog-section grain" id="worklog">
     <div class="content-wrap">
-      <span class="section-label rise"><span class="section-label-line"></span>Work Log · 작업 일지</span>
-      <h2 class="section-title rise delay-1">하루하루 쌓인 작업과 고민들</h2>
+      <span class="section-label rise"><span class="section-label-line"></span>contact</span>
+      <h2 class="section-title rise delay-1"></h2>
 
       <div class="worklog-cards-grid">
 
@@ -1264,20 +1366,16 @@
           <div class="worklog-flip-card-inner">
             <div class="worklog-card-face worklog-card-front">
               <div class="worklog-card-top-row">
-                <span class="worklog-card-emoji"><img src="./img/작업일지/Artboard 2.png" alt=""></span>
-                <span class="worklog-card-date">2026.03.04</span>
+                <span class="worklog-card-emoji"><img src="./img/작업일지/a1.png" alt=""></span>
+                <span class="worklog-card-date"></span>
               </div>
               <!-- 부사네 컨셉 -->
               <div>
-                <p class="worklog-card-summary">부사네 브랜드 컨셉을 처음 잡아본 날</p>
-                <p class="worklog-card-hint">클릭해서 결과 보기</p>
+                <p class="worklog-card-summary">e-mail</p>
               </div>
             </div>
             <div class="worklog-card-face worklog-card-back">
-              <p class="worklog-card-back-label">★</p>
-              <p class="worklog-card-back-text">직접 브랜딩을 해보다니! <br> 설명을 듣자마자 부산 소상공인 편집샵이라는 <br> 아이디어가 떠올랐다. <br>이제 시작이지만
-                뭔가 느낌이 좋다. </p>
-              <p class="worklog-card-back-hint">다시 클릭하면 돌아가요</p>
+              <p class="worklog-card-back-text"> wol0324@naver.com </p>
             </div>
           </div>
         </div>
@@ -1286,19 +1384,14 @@
           <div class="worklog-flip-card-inner">
             <div class="worklog-card-face worklog-card-front">
               <div class="worklog-card-top-row">
-                <span class="worklog-card-emoji"><img src="./img/작업일지/Artboard 3.png" alt="img"></span>
-                <span class="worklog-card-date">2026.03.05</span>
+                <span class="worklog-card-emoji"><img src="./img/작업일지/a2.png" alt="img"></span>
               </div>
               <div>
-                <p class="worklog-card-summary">본격적인 코딩 공부 시작</p>
-                <p class="worklog-card-hint">클릭해서 결과 보기</p>
+                <p class="worklog-card-summary">phone</p>
               </div>
             </div>
             <div class="worklog-card-face worklog-card-back">
-              <p class="worklog-card-back-label">★</p>
-              <p class="worklog-card-back-text">처음 배우는 거라 어색하기도 하고 <br> 어렵기도 하다. 하지만 하나하나 하다보면 <br> 언젠간 멋진 홈페이지도 만들 수
-                있겠지?</p>
-              <p class="worklog-card-back-hint">다시 클릭하면 돌아가요</p>
+              <p class="worklog-card-back-text">010-5095-7613</p>
             </div>
           </div>
         </div>
@@ -1307,88 +1400,18 @@
           <div class="worklog-flip-card-inner">
             <div class="worklog-card-face worklog-card-front">
               <div class="worklog-card-top-row">
-                <span class="worklog-card-emoji"><img src="./img/작업일지/Artboard 4.png" alt="img"></span>
-                <span class="worklog-card-date">2026.05.20</span>
+                <span class="worklog-card-emoji"><img src="./img/작업일지/a3.png" alt="img"></span>
               </div>
               <div>
-                <p class="worklog-card-summary">와히 커피 취향을 어떻게 찾아가면 좋을까?</p>
-                <p class="worklog-card-hint">클릭해서 결과 보기</p>
+                <p class="worklog-card-summary">insta</p>
               </div>
             </div>
             <div class="worklog-card-face worklog-card-back">
-              <p class="worklog-card-back-label">★</p>
-              <p class="worklog-card-back-text">어떻게 하면 취향을 찾아가는 과정을 잘 나타낼 수 있을까? 직접 손님들이 참여할 수 있는 과정이 있으면 좋을 것 같은데,
-                QR코드를 통해 질문에 답을 하고, 결과가 나오는 방식은 어떨까?</p>
-              <p class="worklog-card-back-hint">다시 클릭하면 돌아가요</p>
+              <p class="worklog-card-back-text">@yeoworing</p>
             </div>
           </div>
         </div>
 
-        <div class="worklog-flip-card rise delay-1" data-worklog-card>
-          <div class="worklog-flip-card-inner">
-            <div class="worklog-card-face worklog-card-front">
-              <div class="worklog-card-top-row">
-                <span class="worklog-card-emoji"><img src="./img/작업일지/Artboard 7.png" alt="img"></span>
-                <span class="worklog-card-date">2026.06.12</span>
-              </div>
-              <div>
-                <p class="worklog-card-summary">개인 홈페이지는 농장 컨셉으로 결정</p>
-                <p class="worklog-card-hint">클릭해서 결과 보기</p>
-              </div>
-            </div>
-            <div class="worklog-card-face worklog-card-back">
-              <p class="worklog-card-back-label">♥</p>
-              <p class="worklog-card-back-text">개인 포트폴리오에 컨셉을 주고 싶어 고민 중 <br> 여러 컨셉들을 고민하다 내가 농부가 되어 농작물을 키우는 농장으로 결정!
-                <br> 나의 정성이 들어간 건 디자인이나 농작물이나 비슷하네. 잘 자라도록 노력해야지.
-              </p>
-              <p class="worklog-card-back-hint">다시 클릭하면 돌아가요</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="worklog-flip-card rise delay-2" data-worklog-card>
-          <div class="worklog-flip-card-inner">
-            <div class="worklog-card-face worklog-card-front">
-              <div class="worklog-card-top-row">
-                <span class="worklog-card-emoji"><img src="./img/작업일지/Artboard 5.png" alt="img"></span>
-                <span class="worklog-card-date">2026.06.20</span>
-              </div>
-              <div>
-                <p class="worklog-card-summary">부사네와 와히 홈페이지를 완성했다!</p>
-                <p class="worklog-card-hint">클릭해서 결과 보기</p>
-              </div>
-            </div>
-            <div class="worklog-card-face worklog-card-back">
-              <p class="worklog-card-back-label">♥</p>
-              <p class="worklog-card-back-text">드디어 마무리를 하다니
-                <br>GitHub에도 올려서 끝이 났다.
-                <br>끝이 보이지 않았던 것 같았는데, 너무 뿌듯하다!
-              </p>
-              <p class="worklog-card-back-hint">다시 클릭하면 돌아가요</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="worklog-flip-card rise delay-3" data-worklog-card>
-          <div class="worklog-flip-card-inner">
-            <div class="worklog-card-face worklog-card-front">
-              <div class="worklog-card-top-row">
-                <span class="worklog-card-emoji"><img src="./img/작업일지/Artboard 6.png" alt="img"></span>
-                <span class="worklog-card-date">2026.06.27</span>
-              </div>
-              <div>
-                <p class="worklog-card-summary">부사네 프로모션 페이지를 추가했다.</p>
-                <p class="worklog-card-hint">클릭해서 결과 보기</p>
-              </div>
-            </div>
-            <div class="worklog-card-face worklog-card-back">
-              <p class="worklog-card-back-label">♥</p>
-              <p class="worklog-card-back-text">어떤 추가 작업을 할 지 고민이 많았는데, <br>부사네의 세일 페스타 '부사데이' 페이지를 <br> 만들어보았다. 시원한 바캉스
-                컨셉! <br>홈페이지 팝업으로 연결 완료 </p>
-              <p class="worklog-card-back-hint">다시 클릭하면 돌아가요</p>
-            </div>
-          </div>
-        </div>
 
       </div>
     </div>
@@ -1762,6 +1785,219 @@
     }
 
 
+    /* ──────────────────────────────────────────────────────────
+       [기능 9] 히어로 다이어리 — StPageFlip (부사네 이북과 동일 라이브러리)
+       로컬 파일(js/page-flip.browser.js)로 포함되어 있어 CDN 로딩
+       타이밍 문제가 발생할 수 없습니다. jQuery 등 추가 의존성도 없습니다.
+
+       표지 클릭 → 낱장 8개를 실제 종이 넘기는 곡선 효과로 넘김
+       → 마지막 페이지의 "농장 둘러보기" 클릭 시 다이어리 닫힘
+       ────────────────────────────────────────────────────────── */
+    (function () {
+      var prevBtn = document.getElementById('diaryPrevBtn');
+      var nextBtn = document.getElementById('diaryNextBtn');
+      var dots    = ['dd0', 'dd1', 'dd2', 'dd3'].map(function (id) {
+        return document.getElementById(id);
+      });
+
+      var pageFlip = null;
+
+      function updateControls() {
+        if (!pageFlip) return;
+        var idx   = pageFlip.getCurrentPageIndex();   /* 스프레드 시작 페이지: 0,2,4,6 */
+        var total = pageFlip.getPageCount();          /* 8 */
+        var spread = Math.min(3, Math.floor(idx / 2)); /* 0~3, 도트 4개에 맞춤 */
+
+        prevBtn.disabled = (idx <= 0);
+        nextBtn.disabled = (idx >= total - 2); /* 마지막 스프레드 시작 인덱스는 total-2 */
+        dots.forEach(function (dot, i) { dot.classList.toggle('on', i === spread); });
+      }
+
+      function initPageFlip() {
+        if (pageFlip) return; /* 이미 열었던 적 있으면 재초기화하지 않음 */
+
+        if (typeof St === 'undefined' || !St.PageFlip) {
+          console.error('[다이어리] page-flip.browser.js를 불러오지 못했습니다. js/page-flip.browser.js 경로를 확인해주세요.');
+          return;
+        }
+
+        var bookEl = document.getElementById('diaryBook');
+
+        pageFlip = new St.PageFlip(bookEl, {
+          width: 450,
+          height: 620,
+          size: 'fixed',
+          showCover: false,
+          maxShadowOpacity: 0.5,
+          drawShadow: true,
+          flippingTime: 700,
+          useMouseEvents: true
+        });
+
+        pageFlip.loadFromHTML(document.querySelectorAll('#diaryBook .diary-page'));
+        pageFlip.on('flip', updateControls);
+
+        nextBtn.addEventListener('click', function () { pageFlip.flipNext(); });
+        prevBtn.addEventListener('click', function () { pageFlip.flipPrev(); });
+
+        document.addEventListener('keydown', function (e) {
+          if (!pageFlip) return;
+          if (document.getElementById('diary-book-screen').style.display !== 'flex') return;
+          if (e.key === 'ArrowRight') pageFlip.flipNext();
+          if (e.key === 'ArrowLeft')  pageFlip.flipPrev();
+        });
+
+        updateControls();
+      }
+
+      /* 표지 클릭 → 책 펼치기 */
+      function diaryOpen() {
+        var cover  = document.getElementById('diary-cover');
+        var screen = document.getElementById('diary-book-screen');
+        cover.style.transition = 'opacity .3s';
+        cover.style.opacity = '0';
+        setTimeout(function () {
+          cover.style.display = 'none';
+          screen.style.display = 'flex';
+          initPageFlip();
+        }, 300);
+      }
+      document.getElementById('diaryCoverBook').addEventListener('click', diaryOpen);
+
+      /* 마지막 페이지의 "농장 둘러보기" → 다이어리 닫고 포트폴리오 노출 */
+      document.getElementById('diaryEnterBtn').addEventListener('click', function () {
+        var hero = document.getElementById('diary-hero');
+        hero.style.transition = 'opacity .5s';
+        hero.style.opacity = '0';
+        setTimeout(function () {
+          hero.remove();
+          document.querySelectorAll('.rise:not(.in)').forEach(function (el) {
+            scrollRevealObserver.observe(el);
+          });
+        }, 500);
+      });
+    })();
+
+  </script>
+
+  
+  <script>
+    /* ──────────────────────────────────────────────────────────
+       [기능 10] 로딩 오버레이 — Matter.js 물리 엔진
+       농작물 이미지들이 위에서 떨어져 바닥에 쌓입니다.
+       4초 후 자동으로 페이드아웃되며 포트폴리오가 나타납니다.
+       ────────────────────────────────────────────────────────── */
+    (function () {
+      var totalTime = 4000;
+
+      /* ── 닫기/건너뛰기/진행바는 Matter.js 성공 여부와 완전히 무관하게 항상 동작합니다.
+         (예전 코드는 이 로직 전체가 Matter.js 로드 성공 여부에 묶여 있어서,
+          CDN이 느리거나 막히면 로딩 화면이 영원히 안 사라지고
+          "건너뛰기" 버튼도 같이 먹통이 되는 구조였습니다) ── */
+      var barEl = document.getElementById('loading-bar');
+      var t0    = Date.now();
+      var closed = false;
+
+      function updateBar() {
+        var pct = Math.min(((Date.now() - t0) / totalTime) * 100, 100);
+        if (barEl) barEl.style.width = pct + '%';
+        if (pct < 100) requestAnimationFrame(updateBar);
+      }
+      requestAnimationFrame(updateBar);
+
+      function closeLoading() {
+        if (closed) return;
+        closed = true;
+        var ov = document.getElementById('loading-overlay');
+        if (!ov) return;
+        ov.classList.add('loading-fadeout');
+        setTimeout(function () {
+          if (ov.parentNode) ov.parentNode.removeChild(ov);
+          if (typeof stopCropPhysics === 'function') stopCropPhysics();
+        }, 750);
+      }
+
+      var skipBtn = document.getElementById('loading-skip');
+      if (skipBtn) skipBtn.addEventListener('click', closeLoading);
+      setTimeout(closeLoading, totalTime);
+
+      /* ── 여기부터 농작물 물리 낙하 연출 — 실패해도 위 로직에는 영향 없음 ── */
+      var stopCropPhysics = null;
+
+      try {
+        if (typeof Matter === 'undefined') {
+          console.warn('[로딩 화면] Matter.js를 불러오지 못해 농작물 낙하 연출을 건너뜁니다. (로딩 화면 자체는 정상 진행됩니다)');
+        } else {
+          var Engine = Matter.Engine, Render = Matter.Render,
+              Runner = Matter.Runner, Bodies = Matter.Bodies,
+              Body   = Matter.Body,   World  = Matter.World;
+
+          var W = window.innerWidth;
+          var H = window.innerHeight;
+
+          var canvas = document.getElementById('loading-canvas');
+          canvas.width  = W;
+          canvas.height = H;
+
+          var engine = Engine.create({ gravity: { x: 0, y: 1.2 } });
+          var world  = engine.world;
+
+          var render = Render.create({
+            canvas:  canvas,
+            engine:  engine,
+            options: { width: W, height: H, wireframes: false, background: 'transparent' }
+          });
+          canvas.style.background = 'transparent';
+          Render.run(render);
+          var runner = Runner.create();
+          Runner.run(runner, engine);
+
+          /* 투명 바닥 + 벽 */
+          World.add(world, [
+            Bodies.rectangle(W/2, H+25, W*3, 50,  { isStatic:true, render:{fillStyle:'transparent',strokeStyle:'transparent'} }),
+            Bodies.rectangle(-25, H/2,  50,  H*3, { isStatic:true, render:{fillStyle:'transparent',strokeStyle:'transparent'} }),
+            Bodies.rectangle(W+25, H/2, 50,  H*3, { isStatic:true, render:{fillStyle:'transparent',strokeStyle:'transparent'} })
+          ]);
+
+          /* 농작물 이미지 — img/작업일지/ 폴더 (a1~a6로 파일명 변경됨) */
+          var crops = [
+            './img/작업일지/a1.png',
+            './img/작업일지/a2.png',
+            './img/작업일지/a3.png',
+            './img/작업일지/a4.png',
+            './img/작업일지/a5.png',
+            './img/작업일지/a6.png'
+          ];
+
+          function rand(a, b) { return Math.random() * (b - a) + a; }
+
+          function spawnCrop() {
+            var src  = crops[Math.floor(Math.random() * crops.length)];
+            var size = rand(130, 210);
+            var body = Bodies.circle(rand(size, W - size), -size, size / 2.2, {
+              restitution: 0.35, friction: 0.7, density: 0.003,
+              angle: rand(-0.5, 0.5),
+              render: { sprite: { texture: src, xScale: size/100, yScale: size/100 } }
+            });
+            Body.setVelocity(body, { x: rand(-1.5, 1.5), y: rand(1, 4) });
+            World.add(world, body);
+          }
+
+          for (var i = 0; i < 22; i++) setTimeout(spawnCrop, i * 300);
+
+          stopCropPhysics = function () {
+            try {
+              Render.stop(render);
+              Runner.stop(runner);
+              World.clear(world);
+              Engine.clear(engine);
+            } catch (e) { /* 이미 정리됐으면 무시 */ }
+          };
+        }
+      } catch (err) {
+        console.warn('[로딩 화면] 농작물 낙하 연출 초기화 중 오류가 발생했지만, 로딩 화면은 정상적으로 진행됩니다.', err);
+      }
+    })();
   </script>
 
 </body>
