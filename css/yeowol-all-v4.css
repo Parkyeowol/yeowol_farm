@@ -4112,7 +4112,7 @@ body.modal-is-open {
   transform-style: preserve-3d;
 }
 
-.worklog-flip-card.flipped .worklog-flip-card-inner {
+.worklog-flip-card:hover .worklog-flip-card-inner {
   transform: rotateY(180deg);
 }
 
