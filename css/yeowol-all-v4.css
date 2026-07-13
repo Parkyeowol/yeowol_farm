@@ -156,7 +156,7 @@
    /* 마우스 설정하기 */
 /* 전체 요소를 선택하여 강제로 커서 고정 */
 * {
-  cursor: url('./img/Artboard\ 3.png') 10 10, auto !important;
+  cursor: url('../img/Artboard3.png') 10 10, auto !important;
 }
 
 
@@ -4865,3 +4865,251 @@ body.modal-is-open {
     height: 56px;
   }
 }
+
+/* ════════════════════════════════════════════════════════════════
+   로딩 오버레이
+   ════════════════════════════════════════════════════════════════ */
+
+#loading-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: #e8d8c0;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+#loading-overlay::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(#c8a878 1px, transparent 1px);
+  background-size: 26px 26px; opacity: 0.13; pointer-events: none;
+}
+#loading-canvas {
+  position: absolute; top: 0; left: 0; z-index: 1; background: transparent;
+}
+#loading-center {
+  position: relative; z-index: 10;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 16px; text-align: center; pointer-events: none;
+}
+#loading-logo {
+  font-family: 'GoyangDeokyang', 'Pretendard', sans-serif;
+  font-size: 22px; color: #7a5230; letter-spacing: 0.15em; font-weight: 500;
+}
+#loading-text {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 13px; color: #a08050; letter-spacing: 0.12em;
+}
+#loading-text .ldot { display: inline-block; animation: ldotBlink 1.2s infinite; }
+#loading-text .ldot:nth-child(2) { animation-delay: 0.2s; }
+#loading-text .ldot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes ldotBlink {
+  0%, 80%, 100% { opacity: 0.2; }
+  40%            { opacity: 1; }
+}
+#loading-bar-wrap {
+  width: 160px; height: 3px;
+  background: rgba(122,82,48,0.18); border-radius: 3px; overflow: hidden;
+}
+#loading-bar { height: 100%; width: 0%; background: #7a5230; border-radius: 3px; }
+#loading-skip {
+  position: absolute; top: 18px; right: 22px; z-index: 20;
+  font-family: 'Pretendard', sans-serif; font-size: 12px; color: #7a5a30;
+  background: rgba(255,255,255,0.8); border: 0.5px solid #c8a878;
+  border-radius: 20px; padding: 6px 16px; cursor: pointer; transition: background .2s;
+}
+#loading-skip:hover { background: rgba(255,255,255,0.95); }
+@keyframes loadingFadeOut { to { opacity: 0; pointer-events: none; } }
+#loading-overlay.loading-fadeout { animation: loadingFadeOut 0.7s ease-out forwards; }
+
+
+/* ════════════════════════════════════════════════════════════════
+   히어로 다이어리 — turn.js 플립북
+   ════════════════════════════════════════════════════════════════ */
+
+/* 전체 다이어리 히어로 영역 */
+#diary-hero {
+  width: 100vw; height: 100vh;
+  background: #e8d8c0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+#diary-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(#c8a878 1px, transparent 1px);
+  background-size: 26px 26px; opacity: 0.13; pointer-events: none;
+}
+
+/* 표지 화면 */
+#diary-cover {
+  display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 1;
+}
+.diary-cover-book {
+  width: 260px; height: 370px;
+  background: #7a5230;
+  border-radius: 4px 16px 16px 4px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 14px; cursor: pointer; position: relative; overflow: hidden;
+  box-shadow: -6px 0 0 #3e2810, -9px 4px 0 #2a1a08, 8px 14px 36px rgba(0,0,0,.5);
+  transition: transform .22s, box-shadow .22s; user-select: none;
+}
+.diary-cover-book:hover {
+  transform: translateY(-6px) rotate(.7deg);
+  box-shadow: -6px 0 0 #3e2810, -9px 4px 0 #2a1a08, 10px 22px 44px rgba(0,0,0,.55);
+}
+.diary-cover-book::after {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0,0,0,.025) 3px, rgba(0,0,0,.025) 4px);
+  pointer-events: none;
+}
+.diary-cover-spine {
+  position: absolute; left:0; top:0; bottom:0; width:20px;
+  background: linear-gradient(90deg, #1e1008, #4e3018);
+  border-radius: 4px 0 0 4px;
+}
+.diary-cover-illust { font-size: 60px; position: relative; z-index:1; }
+.diary-cover-title  { font-size: 20px; color: #f5e0b0; text-align:center; line-height:1.75; font-weight:500; position:relative; z-index:1; font-family:'GoyangDeokyang','Pretendard',sans-serif; }
+.diary-cover-year   { font-size: 11px; color: #c8a060; letter-spacing:.22em; position:relative; z-index:1; }
+.diary-cover-hint   { font-size: 11px; color: rgba(245,224,176,.5); position:relative; z-index:1; margin-top:4px; }
+
+/* 열린 책 화면 */
+#diary-book-screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  position: relative; z-index: 1;
+}
+
+/* 책 무대 — StPageFlip이 #diaryBook 안에 자체적으로 900x620 크기의
+   구조(.stf__parent 등)를 만들어 넣습니다. 이 래퍼는 가운데 정렬용입니다. */
+.diary-book-stage {
+  position: relative; width: 900px; height: 620px;
+}
+.diary-book { width: 100%; height: 100%; }
+
+/* ── StPageFlip 라이브러리가 요구하는 기본 구조 CSS
+   (node_modules/page-flip/dist/css/page-flip.css 원본 그대로, stf__ 접두사라 충돌 없음) ── */
+.stf__parent {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  transform: translateZ(0);
+  -ms-touch-action: pan-y;
+  touch-action: pan-y;
+}
+.sft__wrapper { position: relative; width: 100%; box-sizing: border-box; }
+.stf__parent canvas { position: absolute; width: 100%; height: 100%; left: 0; top: 0; }
+.stf__block {
+  position: absolute; width: 100%; height: 100%;
+  box-sizing: border-box; perspective: 2000px;
+}
+.stf__item { display: none; position: absolute; transform-style: preserve-3d; }
+.stf__outerShadow, .stf__innerShadow, .stf__hardShadow, .stf__hardInnerShadow {
+  position: absolute; left: 0; top: 0;
+}
+
+/* 다이어리 페이지 공통 */
+.diary-page {
+  background: #fefaf3;
+  position: relative; overflow: hidden;
+  width: 100%; height: 100%;
+}
+
+.diary-page img{
+  margin-top: -20px;
+}
+
+/* 하드 표지 */
+.diary-page-hard { background: #7a5230 !important; }
+
+/* 그림 페이지 */
+.diary-page-illust {
+  padding: 32px 26px 28px 32px;
+  display: flex; flex-direction: column;
+}
+.dp-date    { font-size: 11px; color: #9a7850; letter-spacing:.04em; margin-bottom:4px; font-family:'Pretendard',sans-serif; }
+.dp-weather { font-size: 11px; color: #b09060; margin-bottom:20px; font-family:'Pretendard',sans-serif; }
+.dp-illust-box {
+  flex: 1; border: 1.5px dashed #ddc8a8; border-radius:10px;
+  display: flex; flex-direction:column; align-items:center; justify-content:center;
+  gap: 12px; text-align:center; padding:20px;
+}
+.dp-big-emoji  { font-size: 68px; }
+.dp-illust-note { font-size: 12px; color:#b09878; line-height:1.7; font-family:'Pretendard',sans-serif; }
+
+/* 텍스트 페이지 */
+.diary-page-text {
+  padding: 32px 32px 28px 26px;
+  display: flex; flex-direction:column;
+}
+.dp-text-header {
+  font-size: 11px; color:#9a7850; letter-spacing:.08em;
+  margin-bottom:20px; padding-bottom:12px;
+  border-bottom: 0.5px solid #e0cdb8;
+  font-family:'Pretendard',sans-serif;
+}
+.dp-text-body {
+  font-size: 14px; color:#2a1e10;
+  line-height:2.2; white-space:pre-line; flex:1;
+  font-family:'Pretendard',sans-serif;
+}
+.dp-corner { position:absolute; bottom:16px; right:18px; font-size:30px; opacity:.4; }
+.dp-num    { position:absolute; bottom:12px; font-size:10px; color:#b09070; font-family:'Pretendard',sans-serif; }
+.dp-num-l  { left: 32px; }
+.dp-num-r  { right: 28px; }
+
+/* 환영 페이지 */
+.diary-page-welcome-l {
+  background: linear-gradient(135deg, #f2dc9a, #e8c860) !important;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:16px; text-align:center; padding:44px 24px;
+}
+.diary-page-welcome-r {
+  background: linear-gradient(135deg, #e8c860, #d4a830) !important;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:16px; text-align:center; padding:44px 28px;
+}
+.dp-welcome-flower { font-size:54px; }
+.dp-welcome-sub img   { margin-top: -100px;
+  }
+.dp-welcome-title  { 
+  margin-top: 150px;
+  font-size:30px; 
+  color:#3a2008; 
+  line-height:1.8; 
+  font-weight:500; 
+  font-family:'GoyangDeokyang','Pretendard',sans-serif; }
+  .dp-welcome-title img{
+    width: 300px;
+    margin-top: 100px;
+  }
+.dp-welcome-desc   { font-size:12px; color:#6a4818; line-height:1.9; font-family:'Pretendard',sans-serif; }
+.dp-enter-btn {
+  background:#5a3810; color:#f5e0b0; border:none; border-radius:22px;
+  padding:10px 28px; font-size:13px; cursor:pointer; margin-top:50px;
+  font-family:'Pretendard',sans-serif;
+  transition: background .2s, transform .15s;
+}
+.dp-enter-btn:hover { background:#2a1808; transform:scale(1.04); }
+.dp-welcome-bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+
+/* 네비게이션 */
+.diary-nav-row { display:flex; align-items:center; gap:14px; }
+.diary-nav-btn {
+  width:40px; height:40px; border-radius:50%;
+  background:rgba(255,255,255,0.78); border:0.5px solid #c8a878;
+  color:#7a5230; font-size:18px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:background .15s, transform .15s;
+}
+.diary-nav-btn:hover { background:rgba(255,255,255,0.95); transform:scale(1.09); }
+.diary-nav-btn:disabled { opacity:.25; cursor:default; transform:none; }
+.diary-nav-dots { display:flex; gap:7px; align-items:center; }
+.diary-dot {
+  width:7px; height:7px; border-radius:50%; background:#c8a878;
+  transition:background .25s, transform .25s;
+}
+.diary-dot.on { background:#7a5230; transform:scale(1.45); }
